@@ -326,20 +326,23 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
             //armar los impuestos por producto
             switch ($product['tax_rate']) {
               case 16:
+                $base_calc = Tools::ps_round($unit_price, 2) * $product['product_quantity'];
                 $taxes_product[] = array(
-                  'Base' => $product['total_price_tax_excl'],
+                  'Base' => Tools::ps_round($base_calc, 2),
                   'Impuesto' => '002',
                   'TipoFactor' => 'Tasa',
                   'TasaOCuota' => '0.16',
-                  'Importe' => $product['total_price_tax_excl'] * .16
+                  'Importe' => Tools::ps_round($base_calc * .16, 2)
                 );
                 $traslados = array('Traslados' => $taxes_product);
-                break;
+              break;
 
               default:
                 $traslados = [];
                 break;
             }
+
+            $taxes_product = null;
 
             $products_invoice[] = array(
               'ClaveProdServ' => $f_prodserv,
