@@ -155,7 +155,7 @@ function sendDataFormOne(data_form){
           $('#existente').stop().hide();
 
           $('#bar-progress').stop().hide();
-          $('#block-two').stop().fadeIn('2000');
+          $('#block-two').removeAttr('hidden');
         }else {
           $('#bar-progress').stop().hide();
           $('#block-one').fadeIn('100');

@@ -369,7 +369,7 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
         $query->where('o.reference = "'.pSQL($data).'"');
 
         if ($result_carrier = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($query)) {
-            $in = 0;
+
             foreach ($result_carrier as $carrier) {
                 $price = (float) $carrier['shipping_cost_tax_excl'];
                 $round = Tools::ps_round($price, 2);
