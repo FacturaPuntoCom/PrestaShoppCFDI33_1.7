@@ -313,7 +313,7 @@ function invoice(rfc, uid, order, method, num_cta){
         setTimeout(function(){
           swal({
             title: "¡Algo ocurrio!",
-            text: json.message,
+            text: json.message.message,
             type: 'warning',
             showConfirmButton: true
           });
