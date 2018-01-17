@@ -21,9 +21,12 @@ var get_uid;
 
 //definiendo la version_ps
 if ($('#ps_version').val() == '17') {
-  var baseUri = $('#base_uri_ps').val();
+  if ($('#ssl_enabled').val() == 1) {
+    var baseUri = $('#base_uri_ssl').val();
+  }else {
+    var baseUri = $('#base_uri_ps').val();
+  }
 }
-
 
 $(function (){
   $("#form-one").submit(function (event){
@@ -99,6 +102,7 @@ if(selected_method == 0){
 
 function validateFormOne(data_form){
   progress(0, $('#progressBar'));
+  console.log(baseUri);
   $.ajax({
              type: 'post',
              url: baseUri+'module/blockfactura/process',

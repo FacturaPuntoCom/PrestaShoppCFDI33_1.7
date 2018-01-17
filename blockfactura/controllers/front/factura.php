@@ -44,7 +44,9 @@ class BlockfacturaFacturaModuleFrontController extends ModuleFrontController
               'encabezado' => $this->module->encabezado,
               'colors' => $this->module->color_fields,
               'ps_version' => $this->module->version_ps,
-              'base_dir' => _PS_BASE_URL_.__PS_BASE_URI__
+              'base_dir' => _PS_BASE_URL_.__PS_BASE_URI__,
+              'base_dir_ssl' => 'https://'.Configuration::get('PS_SHOP_DOMAIN_SSL').__PS_BASE_URI__,
+              'ssl_active' => Configuration::get('PS_SSL_ENABLED')
             )
         );
 

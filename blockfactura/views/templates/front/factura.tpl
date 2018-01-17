@@ -20,6 +20,8 @@
 {block name='page_content'}
 <input type="text" name="" value="{$base_dir}" class="form-control" hidden="hidden" id="base_uri_ps">
 <input type="text" name="" value="{$ps_version}" class="form-control" hidden="hidden" id="ps_version">
+<input type="text" name="" value="{$base_dir_ssl}" class="form-control" hidden="hidden" id="base_uri_ssl">
+<input type="text" name="" value="{$ssl_active}" class="form-control" hidden="hidden" id="ssl_enabled">
 <div class="alert alert-danger" id="alerts" hidden="true" role="alert">
 	<p id="error"></p>
 </div>
