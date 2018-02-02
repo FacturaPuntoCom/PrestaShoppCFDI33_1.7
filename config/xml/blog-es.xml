@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?><rss version="2.0" xml:base="https://www.prestashop.com/es/blog/feed.xml" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:og="http://ogp.me/ns#" xmlns:article="http://ogp.me/ns/article#" xmlns:book="http://ogp.me/ns/book#" xmlns:profile="http://ogp.me/ns/profile#" xmlns:video="http://ogp.me/ns/video#" xmlns:product="http://ogp.me/ns/product#" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:sioc="http://rdfs.org/sioc/ns#" xmlns:sioct="http://rdfs.org/sioc/types#" xmlns:skos="http://www.w3.org/2004/02/skos/core#" xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <channel>
+    <title>Blog Feed</title>
+    <link>https://www.prestashop.com/es/blog/feed.xml</link>
+    <description></description>
+    <language>es</language>
+     <atom:link href="https://www.prestashop.com/es/blog/feed.xml" rel="self" type="application/rss+xml" />
+      <item>
+    <title>Ley de Cookies: 3 Mejores addons PrestaShop para cumplir con ella</title>
+    <link>https://www.prestashop.com/es/blog/ley-de-cookies</link>
+    <description>¿Cumples actualmente con la ley de cookies dentro de la web de tu eCommerce?</description>
+     <pubDate>Thu, 01 Feb 2018 14:55:49 +0100</pubDate>
+ <dc:creator>Mariela Quiroga</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/es/blog/ley-de-cookies</guid>
+  </item>
+  <item>
+    <title>¿Qué es el WPO y cómo optimizarlo en la web de tu eCommerce?</title>
+    <link>https://www.prestashop.com/es/blog/que-es-wpo</link>
+    <description>¿Eres de los que aún no conoce la verdadera importancia del WPO dentro del sitio web de una tienda online?</description>
+     <pubDate>Tue, 30 Jan 2018 10:46:38 +0100</pubDate>
+ <dc:creator>Antonio Torres</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/es/blog/que-es-wpo</guid>
+  </item>
+  <item>
+    <title>¿Cómo conseguir más suscriptores en el canal de YouTube de tu tienda online? </title>
+    <link>https://www.prestashop.com/es/blog/conseguir-suscriptores-youtube</link>
+    <description>¿Te gustaría que tu eCommerce tuviera más suscriptores en tu canal de YouTube y llegar así a más usuarios interesados en tus productos?</description>
+     <pubDate>Mon, 29 Jan 2018 11:03:14 +0100</pubDate>
+ <dc:creator>Daniel Collada</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/es/blog/conseguir-suscriptores-youtube</guid>
+  </item>
+  <item>
+    <title>Los 4 Mejores módulos de PrestaShop para usar WhatsApp como herramienta de atención al cliente</title>
+    <link>https://www.prestashop.com/es/blog/modulos-whatsapp-atencion-al-cliente</link>
+    <description>¿Aún no has probado a utilizar módulos de WhatsApp como herramienta de atención al cliente dentro de tu eCommerce?</description>
+     <pubDate>Thu, 25 Jan 2018 17:06:35 +0100</pubDate>
+ <dc:creator>Ismael Ruiz</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/es/blog/modulos-whatsapp-atencion-al-cliente</guid>
+  </item>
+  <item>
+    <title>¿Qué es la Ley de Protección de Datos y cómo aplicarla en tu eCommerce?</title>
+    <link>https://www.prestashop.com/es/blog/ley-proteccion-datos</link>
+    <description>¿Tienes un eCommerce y aún no eres consciente de si tu negocio cumple correctamente con la actual Ley de Protección de Datos?</description>
+     <pubDate>Tue, 23 Jan 2018 16:00:20 +0100</pubDate>
+ <dc:creator>Marina Brocca</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/es/blog/ley-proteccion-datos</guid>
+  </item>
+  <item>
+    <title>¿Qué es el Efecto ROPO y cómo usarlo para atraer más ventas en mi eCommerce?</title>
+    <link>https://www.prestashop.com/es/blog/efecto-ropo</link>
+    <description>¿Te ha pasado alguna vez que quieres comprarte unas gafas de sol y antes de pagarlas en una tienda física, comparas modelos y precios en varias tiendas online?</description>
+     <pubDate>Mon, 22 Jan 2018 12:37:54 +0100</pubDate>
+ <dc:creator>Marisol García</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/es/blog/efecto-ropo</guid>
+  </item>
+  <item>
+    <title>¿Qué estrategia tienen en Instagram los principales eCommerce?</title>
+    <link>https://www.prestashop.com/es/blog/estrategia-en-instagram</link>
+    <description>¿Te gustaría saber cuál es la estrategia en Instagram de varios de las tiendas online más relevantes en estos momentos?</description>
+     <pubDate>Wed, 17 Jan 2018 10:52:43 +0100</pubDate>
+ <dc:creator>isabel.romero.carretero</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/es/blog/estrategia-en-instagram</guid>
+  </item>
+  <item>
+    <title>¿Cómo actualizar mi tienda de PrestaShop 1.6 a 1.7 paso a paso?</title>
+    <link>https://www.prestashop.com/es/blog/actualizar-prestashop-1-6-a-1-7</link>
+    <description>¿Tienes desactualizada la web de tu eCommerce y necesitas actualizar tu PrestaShop de la versión 1.6 a la 1.7?</description>
+     <pubDate>Mon, 15 Jan 2018 13:07:28 +0100</pubDate>
+ <dc:creator>Antonio Torres</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/es/blog/actualizar-prestashop-1-6-a-1-7</guid>
+  </item>
+  <item>
+    <title>DosFarma: el éxito de su parafarmacia online diseñada en Prestashop</title>
+    <link>https://www.prestashop.com/es/blog/dosfarma-parafarmacia-online</link>
+    <description>¿Te imaginas que pudieras comprar todos tus productos de cosmética y dietética de uso habitual desde una parafarmacia online?</description>
+     <pubDate>Tue, 09 Jan 2018 11:48:37 +0100</pubDate>
+ <dc:creator>Maite Ortín</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/es/blog/dosfarma-parafarmacia-online</guid>
+  </item>
+  <item>
+    <title>Tendencias Social Media para eCommerce que triunfarán en 2018</title>
+    <link>https://www.prestashop.com/es/blog/tendencias-social-media</link>
+    <description>¿Cuáles serán las mejores tendencias en Social Media para 2018, de las que podrá aprovecharse mi tienda online?</description>
+     <pubDate>Tue, 09 Jan 2018 10:34:26 +0100</pubDate>
+ <dc:creator>Ismael Ruiz</dc:creator>
+ <guid isPermaLink="false">https://www.prestashop.com/es/blog/tendencias-social-media</guid>
+  </item>
+  </channel>
+</rss>
