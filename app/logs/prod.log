@@ -1,5 +1,0 @@
-[2018-01-29 22:41:04] request.INFO: Matched route "admin_module_manage_action". {"route_parameters":{"_controller":"PrestaShopBundle\\Controller\\Admin\\ModuleController::moduleAction","action":"install","module_name":"blockfactura","_route":"admin_module_manage_action"},"request_uri":"http://localhost/prestashop/admin247gtw1r9/index.php/module/manage/action/install/blockfactura?_token=KgWAEmbEvX-F57yvrA8d0jcw0P-yN0ZwXqSseP7MWuo"} []
-[2018-01-29 22:41:04] security.DEBUG: Read existing security token from the session. {"key":"_security_main"} []
-[2018-01-29 22:41:04] security.DEBUG: User was reloaded from a user provider. {"username":"felipe.lightcone@gmail.com","provider":"PrestaShopBundle\\Security\\Admin\\EmployeeProvider"} []
-[2018-01-29 22:41:04] app.ERROR: Class "adminblockfactura.phpController" not found in controllers/admin [] []
-[2018-01-29 22:41:05] security.DEBUG: Stored the security token in the session. {"key":"_security_main"} []
