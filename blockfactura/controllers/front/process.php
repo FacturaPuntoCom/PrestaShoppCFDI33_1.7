@@ -251,13 +251,18 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
             }
         }
         //var_dump($result_carrier);
-
+       /* $iva = Tools::ps_round($subtotal_order * .16, 6);
         $array['totals'][] = array(
-          'subtotal' => Tools::ps_round($subtotal_order, 2),
-          'iva' => Tools::ps_round($total_order - $subtotal_order, 2),
-          'total' => Tools::ps_round($total_order, 2),
-        );
-
+          'subtotal' => Tools::ps_round($subtotal_order, 6),
+          'iva' => $iva,
+          'total' => Tools::ps_round($total_order + $iva, 6),
+        );*/
+        $array['totals'][] = array(
+            'subtotal' => Tools::ps_round($subtotal_order, 2),
+            'iva' => Tools::ps_round($total_order - $subtotal_order, 2),
+            'total' => Tools::ps_round($total_order, 2),
+          );
+  
         $url = $this->module->urlapi.'current/account';
         $keyapi = $this->module->keyapi;
         $keysecret = $this->module->keysecret;
@@ -307,7 +312,6 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
             $querySAT->where('psfp.`id_product` = "'.pSQL($product['id_product']).'"');
             $querySAT->groupBy('psfl.name');
             $resultSAT = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($querySAT);
-
             //decidir en los items las características
             foreach ($resultSAT as &$feature) {
               switch ($feature['name']) {
@@ -322,17 +326,23 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
                   break;
               }
             }
-
+            
             //armar los impuestos por producto
             switch ($product['tax_rate']) {
               case 16:
                 $base_calc = Tools::ps_round($unit_price, 2) * $product['product_quantity'];
+                $decimas = explode(".", $base_calc);
+
+                //verificamos que no exceda el máximo de decimales
+                if(strlen($decimas[1]) > 6) {
+                    $base_calc = round($base_calc, 6);
+                }
                 $taxes_product[] = array(
-                  'Base' => Tools::ps_round($base_calc, 2),
+                  'Base' => $base_calc,
                   'Impuesto' => '002',
                   'TipoFactor' => 'Tasa',
                   'TasaOCuota' => '0.16',
-                  'Importe' => Tools::ps_round($base_calc * .16, 2)
+                  'Importe' => Tools::ps_round($base_calc * .16, 6)
                 );
                 $traslados = array('Traslados' => $taxes_product);
               break;
@@ -433,14 +443,14 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
         $seriesget = Curls::frontCurl($this->module->urlapi . 'series', 'get', $this->module->keyapi, $this->module->keysecret);
         $decode_series = Tools::jsonDecode($seriesget, true);
         foreach ($decode_series['data'] as $key => $serie) {
-          if ($serie['SerieName'] == $this->module->serie) {
-            $id_serie = $serie['SerieID'];
-            break;
-          }else {
-            return die(Tools::jsonEncode(array('response' => 'error', 'message' => 'La serie con que intentas facturar no existe en tu catálogo de series y folios')));
-          }
+            
+            if ($serie['SerieName'] == $this->module->serie) {
+                $id_serie = $serie['SerieID'];
+            }
         }
-
+        if ($id_serie == '' || $id_serie == null) {
+            return die(Tools::jsonEncode(array('response' => 'error', 'message' => 'La serie con que intentas facturar no existe en tu catálogo de series y folios')));
+        }
         $params = array(
                  'Receptor' => array('UID' => Tools::getValue('uid')),
                  'TipoCfdi' => 'factura',
@@ -460,7 +470,7 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
         $keyapi = $this->module->keyapi;
         $keysecret = $this->module->keysecret;
         $request = 'post';
-
+        
         //agregar die por cambio en curl
         return die(Curls::frontCurl($url, $request, $keyapi, $keysecret, $params));
     }

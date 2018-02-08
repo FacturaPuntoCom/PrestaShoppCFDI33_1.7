@@ -148,8 +148,8 @@
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<input id="data-cp" type="text" class="client-input animacion-input" name="data-cp" disabled="true" style="border-color: {$colors|escape:'htmlall':'UTF-8'};">
-							<label for="rfc">{l s='Postal Code' mod='blockfactura'}</label>
+							<input id="data-cp" type="text" class="client-input animacion-input" name="data-cp" disabled="true" style="border-color: {$colors|escape:'htmlall':'UTF-8'};" value="00000">
+							<label for="data-cp">{l s='Postal Code' mod='blockfactura'}</label>
 						</div>
 					</div>
 				</div>

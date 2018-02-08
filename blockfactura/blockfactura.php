@@ -91,6 +91,9 @@ class BlockFactura extends Module
         if (isset($config['FACTURA_USOCFDI'])) {
             $this->u_cfdi = $config['FACTURA_USOCFDI'];
         }
+        //rutas de desarrollo
+        /* $this->urlapi = 'http://devfactura.in/api/v1/';
+        $this->urlapi33 = 'http://devfactura.in/api/v3/cfdi33/'; */
 
         $this->urlapi = 'https://factura.com/api/v1/';
         $this->urlapi33 = 'https://factura.com/api/v3/cfdi33/';

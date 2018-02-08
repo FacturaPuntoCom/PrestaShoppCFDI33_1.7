@@ -2,7 +2,7 @@
 <module>
     <name>blockfactura</name>
     <displayName><![CDATA[Electronic Invoice]]></displayName>
-    <version><![CDATA[2.1.1]]></version>
+    <version><![CDATA[3.0]]></version>
     <description><![CDATA[This module lets you create electronic invoice]]></description>
     <author><![CDATA[factura.com]]></author>
     <tab><![CDATA[billing_invoicing]]></tab>

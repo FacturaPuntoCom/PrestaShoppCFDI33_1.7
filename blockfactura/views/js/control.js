@@ -102,13 +102,11 @@ if(selected_method == 0){
 
 function validateFormOne(data_form){
   progress(0, $('#progressBar'));
-  console.log(baseUri);
   $.ajax({
              type: 'post',
              url: baseUri+'module/blockfactura/process',
              data: 'action=postprocess&'+data_form,
                success: function(json) {
-                 console.log(json);
                   if(json){
                       var data = JSON.parse(json);
                       $("#error").text(data[0].invoice);
@@ -191,7 +189,7 @@ function fillFormTwo(data){
   $('#data-colonia').val(data.Data.Colonia);
   $('#data-cp').val(data.Data.CodigoPostal);
   $('#data-ciudad').val(data.Data.Ciudad);
-  $('#data-delegacion').val(data.Data.Delegacion);
+  $('#data-delegacion').val(data.Data.Estado);
 
   $('#UID').val(data.Data.UID);
 }
@@ -293,7 +291,6 @@ function invoice(rfc, uid, order, method, num_cta){
     data: 'action=invoice&rfc='+rfc+'&uid='+uid+'&order='+order+'&method='+method+'&num_cta='+num_cta,
     dataType: 'json',
     success: function(json){
-      console.log(json);
       if (json.response != 'error') {
         $('#btn-pdf').stop().show().attr('href','https://factura.com/api/publica/cfdi33/'+json.invoice_uid+'/pdf');
         $('#btn-xml').stop().show().attr('href','https://factura.com/api/publica/cfdi33/'+json.invoice_uid+'/xml');
