@@ -85,7 +85,6 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
         $query->orderBy('id_order_history DESC');
         $result = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($query);
 
-
         // --- method order state --
         $count_ord = 0;
         foreach ($result as &$row) {
@@ -96,6 +95,7 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
             }
           $count_ord ++;
         }
+
         // --- end method order state ---
 
         //method days invoice
@@ -451,12 +451,18 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
         if ($id_serie == '' || $id_serie == null) {
             return die(Tools::jsonEncode(array('response' => 'error', 'message' => 'La serie con que intentas facturar no existe en tu catálogo de series y folios')));
         }
+        //compruebo si el cliente le pone un uso de cfdi
+        if (Tools::getValue('usocfdi') != '0') {
+            $usocfdi = Tools::getValue('usocfdi');
+        }else {
+            $usocfdi = $this->module->u_cfdi; 
+        }
         $params = array(
                  'Receptor' => array('UID' => Tools::getValue('uid')),
                  'TipoCfdi' => 'factura',
                  'Redondeo' => 2,
                  'Conceptos' => $products_invoice,
-                 'UsoCFDI' => $this->module->u_cfdi,
+                 'UsoCFDI' => $usocfdi,
                  'Cuenta' => $num_cta,
                  'MetodoPago' => 'PUE',
                  'FormaPago' => Tools::getValue('method'),

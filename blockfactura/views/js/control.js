@@ -23,13 +23,13 @@ var get_uid;
 if ($('#ps_version').val() == '17') {
   if ($('#ssl_enabled').val() == 1) {
     var baseUri = $('#base_uri_ssl').val();
-  }else {
+  } else {
     var baseUri = $('#base_uri_ps').val();
   }
 }
 
-$(function (){
-  $("#form-one").submit(function (event){
+$(function () {
+  $("#form-one").submit(function (event) {
     event.preventDefault();
 
     get_rfc = $('#rfc-form-one').val();
@@ -41,58 +41,60 @@ $(function (){
 
   });
 
-  $('#form-two').submit(function (event){
+  $('#form-two').submit(function (event) {
     event.preventDefault();
     var data = $(this).serialize();
 
     orderDetail(data);
 
-    });
-
-      $("#select-payment").change(function(){
-         var selected_method = $( "#select-payment option:selected" ).val();
-
-         if(selected_method == 04 || selected_method == 03 || selected_method == 28){
-           $("#num-cta-box").removeAttr('hidden');
-         }else{
-           $("#num-cta-box").attr('hidden', 'hidden');
-         }
-});
-
-$('#btn-invoice').click(function (event){
-  event.preventDefault();
-
-      var selected_method = $( "#select-payment option:selected" ).val();
-
-      var num_cta_method  = $( "#f-num-cta" ).val();
-
-      if(selected_method == 04 || selected_method == 28 || selected_method == 03){
-        if(num_cta_method == "" || num_cta_method.length < 4){
-          $("#error").text('Ingresa los últimos 4 dí­gitos de tu cuenta o tarjeta.');
-          swal("¡Algo ocurrió!", "Ingresa los últimos 4 dí­gitos de tu cuenta o tarjeta", "warning");
-          return false;
-        }
-}
-
-if(selected_method == 0){
-  $("html, body").animate({
-      scrollTop: 0
-  }, 600);
-  swal("¡Atención!", "Selecciona un método de pago", "warning");
-  return false;
-}else{
-    invoice(get_rfc, get_uid, num_order, selected_method, num_cta_method);
-}
   });
 
-  $('#btn-back').click(function (event){
+  $("#select-payment").change(function () {
+    var selected_method = $("#select-payment option:selected").val();
+
+    if (selected_method == 04 || selected_method == 03 || selected_method == 28) {
+      $("#num-cta-box").removeAttr('hidden');
+    } else {
+      $("#num-cta-box").attr('hidden', 'hidden');
+    }
+  });
+
+  $('#btn-invoice').click(function (event) {
+    event.preventDefault();
+
+    var selected_method = $("#select-payment option:selected").val();
+
+    var selected_usocfdi = $("#select-usocfdi option:selected").val();
+
+    var num_cta_method = $("#f-num-cta").val();
+
+    if (selected_method == 04 || selected_method == 28 || selected_method == 03) {
+      if (num_cta_method == "" || num_cta_method.length < 4) {
+        $("#error").text('Ingresa los últimos 4 dí­gitos de tu cuenta o tarjeta.');
+        swal("¡Algo ocurrió!", "Ingresa los últimos 4 dí­gitos de tu cuenta o tarjeta", "warning");
+        return false;
+      }
+    }
+
+    if (selected_method == 0) {
+      $("html, body").animate({
+        scrollTop: 0
+      }, 600);
+      swal("¡Atención!", "Selecciona un método de pago", "warning");
+      return false;
+    } else {
+      invoice(get_rfc, get_uid, num_order, selected_method, num_cta_method, selected_usocfdi);
+    }
+  });
+
+  $('#btn-back').click(function (event) {
     event.preventDefault();
 
     $('#block-tree').stop().hide();
     $('#block-two').fadeIn('100');
   });
 
-  $('#activar').click(function (event){
+  $('#activar').click(function (event) {
     event.preventDefault();
 
     unlockOrder(num_order);
@@ -100,54 +102,54 @@ if(selected_method == 0){
 
 });
 
-function validateFormOne(data_form){
+function validateFormOne(data_form) {
   progress(0, $('#progressBar'));
   $.ajax({
-             type: 'post',
-             url: baseUri+'module/blockfactura/process',
-             data: 'action=postprocess&'+data_form,
-               success: function(json) {
-                  if(json){
-                      var data = JSON.parse(json);
-                      $("#error").text(data[0].invoice);
-                      $("#error").text(data[0].rfc);
-                      $("#error").text(data[0].order);
-                      $("#error").text(data[0].email);
-                      $("#error").text(data[0].days);
-                      $("html, body").animate({
-                          scrollTop: 0
-                      }, 600);
-                      $("#alerts").removeAttr('hidden');
-                      // if (data[0].invoice != '') {
-                      //   if (!data[0].order) {
-                      //     $('#activar').show();
-                      //   }
-                      // }
-                  }else{
-                    $('#alerts').stop().hide();
-                    orderExist(data_form);
-                  }
+    type: 'post',
+    url: baseUri + 'module/blockfactura/process',
+    data: 'action=postprocess&' + data_form,
+    success: function (json) {
+      if (json) {
+        var data = JSON.parse(json);
+        $("#error").text(data[0].invoice);
+        $("#error").text(data[0].rfc);
+        $("#error").text(data[0].order);
+        $("#error").text(data[0].email);
+        $("#error").text(data[0].days);
+        $("html, body").animate({
+          scrollTop: 0
+        }, 600);
+        $("#alerts").removeAttr('hidden');
+        // if (data[0].invoice != '') {
+        //   if (!data[0].order) {
+        //     $('#activar').show();
+        //   }
+        // }
+      } else {
+        $('#alerts').stop().hide();
+        orderExist(data_form);
+      }
 
-              }
-           });
+    }
+  });
 }
 
-function sendDataFormOne(data_form){
+function sendDataFormOne(data_form) {
   $.ajax({
     type: 'post',
-    url: baseUri+'module/blockfactura/process',
-    data: 'action=entryone&'+data_form,
+    url: baseUri + 'module/blockfactura/process',
+    data: 'action=entryone&' + data_form,
     dataType: 'json',
-    success: function(response){
+    success: function (response) {
       if (response.status != 'error') {
 
         fillFormTwo(response);
         cleanFormTwo();
 
-        $('#bar-progress').attr('hidden','hidden');
+        $('#bar-progress').attr('hidden', 'hidden');
         progress(0, $('#progressBar'));
         $('#block-two').removeAttr('hidden');
-      }else{
+      } else {
         if (response.message == 'El cliente no existe') {
           cleanFormTwo();
 
@@ -158,7 +160,7 @@ function sendDataFormOne(data_form){
 
           $('#bar-progress').stop().hide();
           $('#block-two').removeAttr('hidden');
-        }else {
+        } else {
           $('#bar-progress').stop().hide();
           $('#block-one').fadeIn('100');
           swal("¡Lo sentimos!", "Tu licencia no se encuentra activa o ha caducado ", "warning");
@@ -170,11 +172,13 @@ function sendDataFormOne(data_form){
 }
 
 function progress(percent, $element) {
-    var progressBarWidth = percent * $element.width() / 100;
-    $element.find('div').animate({ width: progressBarWidth }, 500).html("...");
+  var progressBarWidth = percent * $element.width() / 100;
+  $element.find('div').animate({
+    width: progressBarWidth
+  }, 500).html("...");
 }
 
-function fillFormTwo(data){
+function fillFormTwo(data) {
   $('#contact-nombre').val(data.Data.Contacto.Nombre);
   $('#contact-apellidos').val(data.Data.Contacto.Apellidos);
   $('#contact-email').val(data.Data.Contacto.Email);
@@ -194,37 +198,38 @@ function fillFormTwo(data){
   $('#UID').val(data.Data.UID);
 }
 
-function cleanFormTwo(){
-  $('#form-two input').each(function(){
-      $(this).removeAttr('disabled');
+function cleanFormTwo() {
+  $('#form-two input').each(function () {
+    $(this).removeAttr('disabled');
   });
 }
 
-function orderDetail(data){
+function orderDetail(data) {
   $('#block-two').stop().hide();
   $("html, body").animate({
-      scrollTop: 0
+    scrollTop: 0
   }, 600);
   $('#bar-progress').removeAttr('hidden');
   progress(100, $('#progressBar'));
-$.ajax({
-  type: 'post',
-  url: baseUri+'module/blockfactura/process',
-  data: 'action=clientdetail&'+data,
-  dataType: 'json',
-  success: function(json){
-    get_uid = json.Data.UID;
-    fillViewTree(json);
-    getOrder();
-    $('#bar-progress').stop().hide();
-    $('#block-tree').removeAttr('hidden');
-  }
+  $.ajax({
+    type: 'post',
+    url: baseUri + 'module/blockfactura/process',
+    data: 'action=clientdetail&' + data,
+    dataType: 'json',
+    success: function (json) {
+      get_uid = json.Data.UID;
+      fillViewTree(json);
+      getOrder();
+      $('#bar-progress').stop().hide();
+      $('#block-tree').removeAttr('hidden');
+    }
 
-});
+  });
 }
 
-function fillViewTree(data){
-  $('#emisor-nombre').text(data.Data.Contacto.Nombre+ ' ' +data.Data.Contacto.Apellidos);
+function fillViewTree(data) {
+  console.log('cuando me ejecuto=?');
+  $('#emisor-nombre').text(data.Data.Contacto.Nombre + ' ' + data.Data.Contacto.Apellidos);
   $('#emisor-rfc').text(data.Data.RFC);
   $('#emisor-calle').text(data.Data.Calle);
   $('#emisor-colonia').text(data.Data.Colonia);
@@ -233,52 +238,53 @@ function fillViewTree(data){
   $('#emisor-telefono').text(data.Data.Contacto.Telefono);
 }
 
-function getOrder(){
-$.ajax({
-  type: 'post',
-  url: baseUri+'module/blockfactura/process',
-  data: 'action=orderdetail&order='+num_order,
-  dataType: 'json',
-  success: function(json){
-    products = json.products;
-    totals = json.totals;
-    business = json.business;
-    var r = new Array(), j = -1;
-       for (var key=0, size=products.length; key<size; key++){
+function getOrder() {
+  $.ajax({
+    type: 'post',
+    url: baseUri + 'module/blockfactura/process',
+    data: 'action=orderdetail&order=' + num_order,
+    dataType: 'json',
+    success: function (json) {
+      products = json.products;
+      totals = json.totals;
+      business = json.business;
+      var r = new Array(),
+        j = -1;
+      for (var key = 0, size = products.length; key < size; key++) {
 
-           r[++j] ='<tr><td>';
-           r[++j] = products[key]['concept'];
-           r[++j] = '</td><td>';
-           r[++j] = products[key]['cantidad'];
-           r[++j] = '</td><td>$';
-           r[++j] = products[key]['precio'];
-           r[++j] = '</td><td>$';
-           r[++j] = products[key]['subtotal'];
-           r[++j] = '</td></tr>';
-       }
-$('#datails-body').html(r.join(''));
+        r[++j] = '<tr><td>';
+        r[++j] = products[key]['concept'];
+        r[++j] = '</td><td>';
+        r[++j] = products[key]['cantidad'];
+        r[++j] = '</td><td>$';
+        r[++j] = products[key]['precio'];
+        r[++j] = '</td><td>$';
+        r[++j] = products[key]['subtotal'];
+        r[++j] = '</td></tr>';
+      }
+      $('#datails-body').html(r.join(''));
 
-for (var key=0, size=business.length; key<size; key++){
-  $('#receptor-nombre').text(business[key]['nombre']);
-  $('#receptor-rfc').text(business[key]['rfc']);
-  $('#receptor-calle').text(business[key]['direccion']);
-  $('#receptor-colonia').text(business[key]['colonia']);
-  $('#receptor-ciudad').text(business[key]['ciudad']);
-  $('#receptor-email').text(business[key]['email']);
+      for (var key = 0, size = business.length; key < size; key++) {
+        $('#receptor-nombre').text(business[key]['nombre']);
+        $('#receptor-rfc').text(business[key]['rfc']);
+        $('#receptor-calle').text(business[key]['direccion']);
+        $('#receptor-colonia').text(business[key]['colonia']);
+        $('#receptor-ciudad').text(business[key]['ciudad']);
+        $('#receptor-email').text(business[key]['email']);
+      }
+
+      for (var key = 0, size = totals.length; key < size; key++) {
+        $('#invoice-subtotal').text('$ ' + totals[key]['subtotal']);
+        $('#invoice-iva').text('$ ' + totals[key]['iva']);
+        $('#invoice-total').text('$ ' + totals[key]['total']);
+      }
+
+    }
+  });
 }
 
-for (var key=0, size=totals.length; key<size; key++){
-  $('#invoice-subtotal').text('$ '+totals[key]['subtotal']);
-  $('#invoice-iva').text('$ '+totals[key]['iva']);
-  $('#invoice-total').text('$ '+totals[key]['total']);
-}
 
-}
-});
-}
-
-
-function invoice(rfc, uid, order, method, num_cta){
+function invoice(rfc, uid, order, method, num_cta, usocfdi) {
   swal({
     title: "Preparando tu factura",
     text: "Timbrando...",
@@ -287,82 +293,82 @@ function invoice(rfc, uid, order, method, num_cta){
   });
   $.ajax({
     type: 'post',
-    url: baseUri+'module/blockfactura/process',
-    data: 'action=invoice&rfc='+rfc+'&uid='+uid+'&order='+order+'&method='+method+'&num_cta='+num_cta,
+    url: baseUri + 'module/blockfactura/process',
+    data: 'action=invoice&rfc=' + rfc + '&uid=' + uid + '&order=' + order + '&method=' + method + '&num_cta=' + num_cta +'&usocfdi=' + usocfdi,
     dataType: 'json',
-    success: function(json){
+    success: function (json) {
       if (json.response != 'error') {
-        $('#btn-pdf').stop().show().attr('href','https://factura.com/api/publica/cfdi33/'+json.invoice_uid+'/pdf');
-        $('#btn-xml').stop().show().attr('href','https://factura.com/api/publica/cfdi33/'+json.invoice_uid+'/xml');
+        $('#btn-pdf').stop().show().attr('href', 'https://factura.com/api/publica/cfdi33/' + json.invoice_uid + '/pdf');
+        $('#btn-xml').stop().show().attr('href', 'https://factura.com/api/publica/cfdi33/' + json.invoice_uid + '/xml');
         $('#block-tree').stop().hide();
         $('#alerts').stop().hide();
         $('#block-four').removeAttr('hidden');
-        setTimeout(function(){
+        setTimeout(function () {
           swal({
             title: "¡Facturado!",
             type: 'success',
             timer: 1000,
             showConfirmButton: false
           });
-          }, 1000);
+        }, 1000);
 
-          $("html, body").animate({
-              scrollTop: 0
-          }, 600);
-      }else{
+        $("html, body").animate({
+          scrollTop: 0
+        }, 600);
+      } else {
         // alert(json.message);
-        setTimeout(function(){
+        setTimeout(function () {
           swal({
             title: "¡Algo ocurrio!",
             text: json.message.message,
             type: 'warning',
             showConfirmButton: true
           });
-          }, 2000);
+        }, 2000);
 
       }
     }
   });
-  }
+}
 
 
-function orderExist(data){
+function orderExist(data) {
   $('#block-one').stop().hide();
   $("html, body").animate({
-      scrollTop: 0
+    scrollTop: 0
   }, 600);
   $('#bar-progress').removeAttr('hidden');
   progress(100, $('#progressBar'));
   $.ajax({
     type: 'post',
-    url: baseUri+'module/blockfactura/process',
-    data: 'action=orderlist&'+data,
+    url: baseUri + 'module/blockfactura/process',
+    data: 'action=orderlist&' + data,
     dataType: 'json',
-    success: function(response){
+    success: function (response) {
       if (response[0]) {
         if (response[0].status == 'cancelada') {
           $('#bar-progress').stop().hide();
           $('#block-one').fadeIn('100');
           $("#error").text("LA ORDEN SE ENCUENTRA CANCELADA, por favor comunicate con el administrador");
           $("html, body").animate({
-              scrollTop: 0
+            scrollTop: 0
           }, 600);
           $("#alerts").show();
-        }else {
+        } else {
           $('#aviso-factura').text('La orden ya se encuentra facturada');
-          $('#btn-pdf').stop().show().attr('href','https://factura.com/api/publica/cfdi33/'+response[0].UID+'/pdf');
-          $('#btn-xml').stop().show().attr('href','https://factura.com/api/publica/cfdi33/'+response[0].UID+'/xml');
+          $('#btn-pdf').stop().show().attr('href', 'https://factura.com/api/publica/cfdi33/' + response[0].UID + '/pdf');
+          $('#btn-xml').stop().show().attr('href', 'https://factura.com/api/publica/cfdi33/' + response[0].UID + '/xml');
           $('#bar-progress').stop().hide();
           $('#block-four').removeAttr('hidden');
         }
-      }else{
+      } else {
         sendDataFormOne(data);
       }
     }
   });
 }
 //función agregada para el demo
-function unlockOrder(order){
+function unlockOrder(order) {
   $('#alerts').hide();
   $('#activar').hide();
   swal({
@@ -373,10 +379,10 @@ function unlockOrder(order){
   });
   $.ajax({
     type: 'post',
-    url: baseUri+'module/blockfactura/process',
-    data: 'action=unlockorder&'+'&order='+order+'&id_order_state=2',
+    url: baseUri + 'module/blockfactura/process',
+    data: 'action=unlockorder&' + '&order=' + order + '&id_order_state=2',
     dataType: 'json',
-    success: function(response){
+    success: function (response) {
       swal("¡En hora buena!", "El pedido se encuentra liberado, intenta facturar de nuevo", "success");
     }
   });
