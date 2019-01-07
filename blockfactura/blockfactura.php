@@ -29,20 +29,24 @@ class BlockFactura extends Module
     public $days;
     public $urlapi;
     public $urlapi33;
+    public $urlapi_dev;
+    public $urlapi33_dev;
     public $encabezado;
     public $color_fields;
     public $send_mail;
     public $u_cfdi;
+    public $checkbox_dev;
 
     protected static $factura_fields = array(
-        'FACTURA_KEYAPI',
-        'FACTURA_SECRETAPI',
+    'FACTURA_KEYAPI',
+    'FACTURA_SECRETAPI',
     'FACTURA_SERIE',
     'FACTURA_DAYS',
     'FACTURA_ENCABEZADO',
     'FACTURA_COLORS',
     'FACTURA_SENDEMAIL',
     'FACTURA_USOCFDI',
+    'FACTURA_SANDBOX',
     );
 
     public function __construct()
@@ -65,7 +69,7 @@ class BlockFactura extends Module
         $this->ps_versions_compliancy = array('min' => '1.7', 'max' => _PS_VERSION_);
 
         $config = Configuration::getMultiple(array('FACTURA_KEYAPI', 'FACTURA_SECRETAPI',
-        'FACTURA_SERIE', 'FACTURA_DAYS', 'FACTURA_ENCABEZADO', 'FACTURA_COLORS', 'FACTURA_SENDEMAIL', 'FACTURA_USOCFDI',));
+        'FACTURA_SERIE', 'FACTURA_DAYS', 'FACTURA_ENCABEZADO', 'FACTURA_COLORS', 'FACTURA_SENDEMAIL', 'FACTURA_USOCFDI','FACTURA_SANDBOX',));
 
         if (isset($config['FACTURA_KEYAPI'])) {
             $this->keyapi = $config['FACTURA_KEYAPI'];
@@ -91,12 +95,17 @@ class BlockFactura extends Module
         if (isset($config['FACTURA_USOCFDI'])) {
             $this->u_cfdi = $config['FACTURA_USOCFDI'];
         }
-        //rutas de desarrollo
-        /* $this->urlapi = 'http://devfactura.in/api/v1/';
-        $this->urlapi33 = 'http://devfactura.in/api/v3/cfdi33/'; */
+        if (isset($config['FACTURA_SANDBOX'])) {
+            $this->checkbox_dev = $config['FACTURA_SANDBOX'];
+        }
 
+        //urls_producción
         $this->urlapi = 'https://factura.com/api/v1/';
         $this->urlapi33 = 'https://factura.com/api/v3/cfdi33/';
+
+        //urls_sandbox
+        $this->urlapi_dev = 'http://devfactura.in/api/v1/';
+        $this->urlapi33_dev = 'http://devfactura.in/api/v3/cfdi33/';
 
         //defined version
         $version = _PS_VERSION_;
@@ -142,7 +151,8 @@ class BlockFactura extends Module
         !Configuration::deleteByName('FACTURA_ENCABEZADO') ||
         !Configuration::deleteByName('FACTURA_COLORS') ||
         !Configuration::deleteByName('FACTURA_USOCFDI') ||
-        !Configuration::deleteByName('FACTURA_SENDEMAIL')
+        !Configuration::deleteByName('FACTURA_SENDEMAIL') ||
+        !Configuration::deleteByName('FACTURA_SANDBOX')
 
         ) {
             return false;
@@ -365,6 +375,25 @@ class BlockFactura extends Module
                         'label' => $this->l('SECRET KEY: '),
                         'name' => 'FACTURA_SECRETAPI',
                         'required' => true,
+                    ),
+                    array(
+                      'type' => 'switch',
+                      'label' => $this->l('SANDBOX'),
+                      'name' => 'FACTURA_SANDBOX',
+                      'required' => true,
+                      'is_bool' => true,
+                      'values' => array(
+                        array(
+                          'id' => 'active_on',
+                          'value' => 1,
+                          'label' => $this->l('Yes')
+                        ),
+                        array(
+                          'id' => 'active_off',
+                          'value' => 0,
+                          'label' => $this->l('No')
+                        )
+                      ),
                     ),
                     array(
                         'type' => 'text',
