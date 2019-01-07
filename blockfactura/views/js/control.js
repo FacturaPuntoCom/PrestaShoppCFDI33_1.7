@@ -278,6 +278,8 @@ function getOrder() {
         $('#invoice-iva').text('$ ' + totals[key]['iva']);
         $('#invoice-total').text('$ ' + totals[key]['total']);
       }
+      
+      $("#select-usocfdi option[value='"+json.uso_cfdi.id_uso+"']").attr("selected", true);
 
     }
   });
