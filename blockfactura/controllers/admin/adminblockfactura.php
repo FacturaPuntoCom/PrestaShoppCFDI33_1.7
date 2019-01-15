@@ -51,7 +51,7 @@ class AdminBlockfacturaController extends ModuleAdminController
         $invoices = array();
         // $url = $this->module->urlapi.'invoices';
         $url_aux = ($this->module->checkbox_dev == 0) ? $this->module->urlapi33 : $this->module->urlapi33_dev;
-        $url = $url_aux.'list?=&type_document=factura$per_page=1000';
+        $url = $url_aux.'list?=&type_document=factura&per_page=1000';
         $keyapi = $this->module->keyapi;
         $keysecret = $this->module->keysecret;
 
