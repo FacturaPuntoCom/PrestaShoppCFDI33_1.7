@@ -1,6 +1,9 @@
 # PrestaShoppCFDI33_1.7
 Plugin Prestashop 1.7 para nuevo cfdi 3.3
 
+### Fix v3.1.1
+ * Fix en bug obtener serie de facturación (solucionado)
+
 ### Fix v3.1
 
  * Selección de ambiente a ejecutar dentro de la configuración del plugin (sandbox, producción).
