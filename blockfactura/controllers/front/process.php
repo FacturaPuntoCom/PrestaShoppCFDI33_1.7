@@ -449,7 +449,7 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
             $send = true;
         }
 
-        $seriesget = Curls::frontCurl($this->module->urlapi . 'series', 'get', $this->module->keyapi, $this->module->keysecret);
+        $seriesget = Curls::frontCurl($url_aux . 'series', 'get', $this->module->keyapi, $this->module->keysecret);
         $decode_series = Tools::jsonDecode($seriesget, true);
      
         foreach ($decode_series['data'] as $key => $serie) {
