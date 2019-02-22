@@ -31,6 +31,8 @@ class BlockFactura extends Module
     public $urlapi33;
     public $urlapi_dev;
     public $urlapi33_dev;
+    public $urlpub;
+    public $urlpub_dev;
     public $encabezado;
     public $color_fields;
     public $send_mail;
@@ -102,10 +104,12 @@ class BlockFactura extends Module
         //urls_producción
         $this->urlapi = 'https://factura.com/api/v1/';
         $this->urlapi33 = 'https://factura.com/api/v3/cfdi33/';
+        $this->urlpub = 'https://factura.com/api/publica/cfdi33/';
 
         //urls_sandbox
         $this->urlapi_dev = 'http://devfactura.in/api/v1/';
         $this->urlapi33_dev = 'http://devfactura.in/api/v3/cfdi33/';
+        $this->urlpub_dev = 'http://devfactura.in/api/publica/cfdi33/';
 
         //defined version
         $version = _PS_VERSION_;
