@@ -41,8 +41,8 @@
                 <a class="btn btn-info" role="button"  href="" disabled="true">Documento PDF</a>
                 <a class="btn btn-default" href="" disabled="true">Documento XML</a>
                 {else}
-                <a id="pdf-{$con.uid|escape:'htmlall':'UTF-8'}" class="btn btn-info" role="button"  href="https://factura.com/api/publica/cfdi33/{$con.uid|escape:'htmlall':'U-8'}/pdf">Documento PDF</a>
-		            <a id="xml-{$con.uid|escape:'htmlall':'UTF-8'}" class="btn btn-default" href="https://factura.com/api/publica/cfdi33/{$con.uid|escape:'htmlall':'UTF-8'}/xml">Documento XML</a> 
+                <a id="pdf-{$con.uid|escape:'htmlall':'UTF-8'}" class="btn btn-info" role="button"  href="{$pub_url|escape:'htmlall':'UTF-8'}{$con.uid|escape:'htmlall':'U-8'}/pdf">Documento PDF</a>
+		            <a id="xml-{$con.uid|escape:'htmlall':'UTF-8'}" class="btn btn-default" href="{$pub_url|escape:'htmlall':'UTF-8'}{$con.uid|escape:'htmlall':'UTF-8'}/xml">Documento XML</a> 
                 {/if}
               </td>
               <td>
