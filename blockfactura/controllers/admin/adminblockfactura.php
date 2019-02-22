@@ -51,6 +51,8 @@ class AdminBlockfacturaController extends ModuleAdminController
         $invoices = array();
         // $url = $this->module->urlapi.'invoices';
         $url_aux = ($this->module->checkbox_dev == 0) ? $this->module->urlapi33 : $this->module->urlapi33_dev;
+        $url_pub = ($this->module->checkbox_dev == 0) ? $this->module->urlpub : $this->module->urlpub_dev;
+        
         $url = $url_aux.'list?=&type_document=factura&per_page=1000';
         $keyapi = $this->module->keyapi;
         $keysecret = $this->module->keysecret;
@@ -85,6 +87,7 @@ class AdminBlockfacturaController extends ModuleAdminController
         $this->context->smarty->assign(array(
         'content' => $invoices,
         'ajax_url' => $url_ajax,
+        'pub_url' => $url_pub,
         ));
     }
 
