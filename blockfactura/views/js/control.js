@@ -279,6 +279,11 @@ function getOrder() {
         $('#invoice-total').text('$ ' + totals[key]['total']);
       }
       
+      if(json.descuentos.descuento > 0) {
+        $('#invoice-discount').text('-$ '+json.descuentos.descuento);
+        $('#td-discount').removeAttr('hidden');
+      }
+      
       $("#select-usocfdi option[value='"+json.uso_cfdi.id_uso+"']").attr("selected", true);
 
     }
