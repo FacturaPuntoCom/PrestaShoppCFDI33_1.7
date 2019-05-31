@@ -262,7 +262,7 @@
 							<option value="I08">{l s='Otra maquinaria y equipo' mod='blockfactura'}</option>
 							<option value="D01">{l s='Honorarios médicos, dentales y gastos hospitalarios' mod='blockfactura'}</option>
 							<option value="D02">{l s='Gastos médicos por incapacidad o discapacidad' mod='blockfactura'}</option>
-							<option value="D03>{l s='Gastos funerales' mod='blockfactura'}</option>
+							<option value="D03">{l s='Gastos funerales' mod='blockfactura'}</option>
 							<option value="D04">{l s='Donativos' mod='blockfactura'}</option>
 							<option value="D05">{l s='Intereses reales efectivamente pagados por créditos hipotecarios (casa habitación)' mod='blockfactura'}</option>
 							<option value="D06">{l s='Aportaciones voluntarias al SAR' mod='blockfactura'}</option>
@@ -321,13 +321,13 @@
 								<td>{l s='Subtotal:' mod='blockfactura'}</td>
 								<td><span id="invoice-subtotal"></span></td>
 							</tr>
-							<!-- <tr id="td-discount" hidden="true">
-								<td>Descuento:</td>
-								<td><span id="invoice-discount"></span></td>
-							</tr> -->
 							<tr>
 								<td>{l s='VAT:' mod='blockfactura'}</td>
 								<td><span id="invoice-iva"></span></td>
+							</tr>
+							<tr id="td-discount" hidden="true">
+								<td>Descuento:</td>
+								<td><span id="invoice-discount"></span></td>
 							</tr>
 							<tr>
 								<td>{l s='Total:' mod='blockfactura'}</td>
