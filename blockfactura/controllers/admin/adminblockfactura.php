@@ -114,4 +114,21 @@ class AdminBlockfacturaController extends ModuleAdminController
 
         die(Curls::adminCurl($url, $keyapi, $keysecret));
     }
+    
+    public function ajaxProcessDownloadFile()
+    {
+      $uid  = Tools::getValue('uid');
+      $type = Tools::getValue('type');
+
+      $url = ($type == 'pdf') ? $this->module->urlapi33.$uid.'/pdf' : $this->module->urlapi33.$uid.'/xml';
+      $keyapi = $this->module->keyapi;
+      $keysecret = $this->module->keysecret;
+
+      $response = Curls::adminCurl($url, $keyapi, $keysecret);
+
+      header('Content-type: application/json');
+      $data = array('file' => base64_encode($response));
+
+      echo json_encode($data);
+    }
 }
