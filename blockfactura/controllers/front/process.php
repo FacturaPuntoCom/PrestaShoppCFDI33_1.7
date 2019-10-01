@@ -545,6 +545,25 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
 
         return die(Tools::jsonEncode($response));
     }
+ 
+    //método que descarga los archivos de factura
+    public function displayAjaxDownloadFile()
+    {
+      $uid  = Tools::getValue('uid');
+      $type = Tools::getValue('type');
+
+      $url = ($type == 'pdf') ? $this->module->urlapi33.$uid.'/pdf' : $this->module->urlapi33.$uid.'/xml' ;
+      $keyapi = $this->module->keyapi;
+      $keysecret = $this->module->keysecret;
+      $request = 'get';
+
+      $response = Curls::frontCurl($url, $request, $keyapi, $keysecret);
+
+      header('Content-type: application/json');
+      $data = array('file' => base64_encode($response));
+
+      echo json_encode($data);
+    }
 
     //método para el demo, liberar pedido
     public function displayAjaxUnlockOrder()
