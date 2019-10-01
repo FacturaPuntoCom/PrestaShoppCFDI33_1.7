@@ -357,8 +357,8 @@
 					<h6 id="aviso-factura">{l s='The invoice was successful' mod='blockfactura'}</h6>
 					</legend>
 						<br>
-						<a href="#" class="boton-login animation-boton" id="btn-pdf" style="background-color: {$colors|escape:'htmlall':'UTF-8'};">{l s='PDF' mod='blockfactura'}</a>
-						<a href="#" class="boton-login animation-boton" id="btn-xml" style="background-color: {$colors|escape:'htmlall':'UTF-8'};">{l s='XML' mod='blockfactura'}</a>
+						<button class="boton-login animation-boton" id="btn-pdf" style="background-color: {$colors|escape:'htmlall':'UTF-8'};">{l s='PDF' mod='blockfactura'}</button>
+						<button class="boton-login animation-boton" id="btn-xml" style="background-color: {$colors|escape:'htmlall':'UTF-8'};">{l s='XML' mod='blockfactura'}</button>
 						<hr style="height: 2px; width:60%; background-color: #999; margin-top: 2em;">
 						<a  href="{$link->getModuleLink('blockfactura', 'factura', [], true)|escape:'htmlall':'UTF-8'}" class="boton-login animation-boton" style="margin-top: 1em; background-color: {$colors|escape:'htmlall':'UTF-8'};">{l s='Exit' mod='blockfactura'}</a>
 				</div>
