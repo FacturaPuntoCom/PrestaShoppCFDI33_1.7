@@ -305,8 +305,8 @@ function invoice(rfc, uid, order, method, num_cta, usocfdi) {
     dataType: 'json',
     success: function (json) {
       if (json.response != 'error') {
-        $('#btn-pdf').stop().show().attr('href', 'https://factura.com/api/publica/cfdi33/' + json.invoice_uid + '/pdf');
-        $('#btn-xml').stop().show().attr('href', 'https://factura.com/api/publica/cfdi33/' + json.invoice_uid + '/xml');
+        document.getElementById("btn-pdf").onclick=function(){downloadFile(response[0].UID, 'pdf')};
+        document.getElementById("btn-xml").onclick=function(){downloadFile(response[0].UID, 'xml')};
         $('#block-tree').stop().hide();
         $('#alerts').stop().hide();
         $('#block-four').removeAttr('hidden');
@@ -363,8 +363,8 @@ function orderExist(data) {
           $("#alerts").show();
         } else {
           $('#aviso-factura').text('La orden ya se encuentra facturada');
-          $('#btn-pdf').stop().show().attr('href', 'https://factura.com/api/publica/cfdi33/' + response[0].UID + '/pdf');
-          $('#btn-xml').stop().show().attr('href', 'https://factura.com/api/publica/cfdi33/' + response[0].UID + '/xml');
+          document.getElementById("btn-pdf").onclick=function(){downloadFile(response[0].UID, 'pdf')};
+          document.getElementById("btn-xml").onclick=function(){downloadFile(response[0].UID, 'xml')};
           $('#bar-progress').stop().hide();
           $('#block-four').removeAttr('hidden');
         }
@@ -374,6 +374,38 @@ function orderExist(data) {
     }
   });
 }
+
+function downloadFile(uid, type) {
+    $.ajax({
+      type: 'post',
+      url: baseUri+'module/blockfactura/process',
+      data: 'action=downloadFile&uid='+uid+'&type='+type,
+      dataType: 'json',
+      success: function(response){
+        var b64 = response.file.toString();
+
+        // Decodificar la cadena para mostrar contenido pdf
+        var bin = atob(b64);
+
+        // Insertar el link que contendrá el archivo pdf
+        var link = document.createElement('a');
+        if(type == 'pdf') {
+          link.download = uid + '.pdf';
+        } else {
+          link.download = uid + '.xml';
+        }
+
+        link.href = 'data:application/octet-stream;base64,' + b64;
+        document.body.appendChild(link);
+        link.click();
+
+        setTimeout(function() {
+          link.remove();
+        }, 0);
+      }
+    });
+  }
+
 //función agregada para el demo
 function unlockOrder(order) {
   $('#alerts').hide();
