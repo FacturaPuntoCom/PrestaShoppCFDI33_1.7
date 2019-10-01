@@ -41,8 +41,8 @@
                 <a class="btn btn-info" role="button"  href="" disabled="true">Documento PDF</a>
                 <a class="btn btn-default" href="" disabled="true">Documento XML</a>
                 {else}
-                <a id="pdf-{$con.uid|escape:'htmlall':'UTF-8'}" class="btn btn-info" role="button"  href="{$pub_url|escape:'htmlall':'UTF-8'}{$con.uid|escape:'htmlall':'U-8'}/pdf">Documento PDF</a>
-		            <a id="xml-{$con.uid|escape:'htmlall':'UTF-8'}" class="btn btn-default" href="{$pub_url|escape:'htmlall':'UTF-8'}{$con.uid|escape:'htmlall':'UTF-8'}/xml">Documento XML</a> 
+                <a id="pdf-{$con.uid|escape:'htmlall':'UTF-8'}" class="btn btn-info" role="button"  onclick="downloadFile('{$con.uid|escape:'htmlall':'UTF-8'}', 'pdf')">Documento PDF</a>
+		            <a id="xml-{$con.uid|escape:'htmlall':'UTF-8'}" class="btn btn-default" role="button"  onclick="downloadFile('{$con.uid|escape:'htmlall':'UTF-8'}', 'xml')">Documento XML</a>
                 {/if}
               </td>
               <td>
@@ -143,6 +143,51 @@
           }else {
             swal("Algo salió mal :( ", "error");
           }
+      }
+    });
+  }
+  
+  function downloadFile(uid, type) {
+    var url_admin = $('#url-admin').val();
+    swal({
+      title: "Factura " + uid,
+      text: "Descargando...",
+      timer: 6000,
+      showConfirmButton: false
+    });
+    $.ajax({
+      type: 'post',
+      url: url_admin,
+      dataType: 'json',
+      processData: 'false',
+      data: {
+        controller : 'AdminBlockfactura',
+  			action : 'downloadFile',
+        uid: uid,
+        type: type,
+  			ajax : true,
+      },
+      success: function(response){
+        var b64 = response.file.toString();
+
+        // Decodificar la cadena para mostrar contenido pdf
+        var bin = atob(b64);
+
+        // Insertar el link que contendrá el archivo pdf
+        var link = document.createElement('a');
+        if(type == 'pdf') {
+          link.download = uid + '.pdf';
+        } else {
+          link.download = uid + '.xml';
+        }
+
+        link.href = 'data:application/octet-stream;base64,' + b64;
+        document.body.appendChild(link);
+        link.click();
+      },
+      error: function(error) {
+        console.log('todo mal');
+        console.log(error);
       }
     });
   }
