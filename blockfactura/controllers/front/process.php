@@ -162,7 +162,7 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
           'apellidos' => Tools::getValue('contact-apellidos'),
           'email' => Tools::getValue('contact-email'),
           'telefono' => Tools::getValue('contact-telefono'),
-          'razons' => Tools::getValue('data-razoncial'),
+          'razons' => Tools::getValue('data-razonsocial'),
           'rfc' => Tools::getValue('data-rfc'),
           'calle' => Tools::getValue('data-calle'),
           'numero_exterior' => Tools::getValue('data-exterior'),
