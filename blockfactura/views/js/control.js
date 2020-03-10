@@ -312,8 +312,8 @@ function invoice(rfc, uid, order, method, num_cta, usocfdi) {
     dataType: 'json',
     success: function (json) {
       if (json.response != 'error') {
-        document.getElementById("btn-pdf").onclick=function(){downloadFile(response[0].UID, 'pdf')};
-        document.getElementById("btn-xml").onclick=function(){downloadFile(response[0].UID, 'xml')};
+        document.getElementById("btn-pdf").onclick=function(){downloadFile(json.uid, 'pdf')};
+        document.getElementById("btn-xml").onclick=function(){downloadFile(json.uid, 'xml')};
         $('#block-tree').stop().hide();
         $('#alerts').stop().hide();
         $('#block-four').removeAttr('hidden');
