@@ -185,7 +185,6 @@ function fillFormTwo(data) {
   $('#contact-telefono').val(data.Data.Contacto.Telefono);
 
   $('#data-razonsocial').val(data.Data.RazonSocial);
-  $('#data-razoncial').val(data.Data.RazonSocial);
   $('#data-rfc').val(data.Data.RFC);
   $('#data-calle').val(data.Data.Calle);
   $('#data-exterior').val(data.Data.Numero);
@@ -205,26 +204,34 @@ function cleanFormTwo() {
 }
 
 function orderDetail(data) {
-  $('#block-two').stop().hide();
-  $("html, body").animate({
+  if ($('#contact-email').val() == '' || $('#data-rfc').val() == '') {
+    swal({
+      title: "Campos obligatorios",
+      text: "El email y el RFC no deben estar vacíos",
+      type: 'info',
+      showConfirmButton: true
+    });
+  } else {
+    $('#block-two').stop().hide();
+    $("html, body").animate({
     scrollTop: 0
-  }, 600);
-  $('#bar-progress').removeAttr('hidden');
-  progress(100, $('#progressBar'));
-  $.ajax({
-    type: 'post',
-    url: baseUri + 'module/blockfactura/process',
-    data: 'action=clientdetail&' + data,
-    dataType: 'json',
-    success: function (json) {
-      get_uid = json.Data.UID;
-      fillViewTree(json);
-      getOrder();
-      $('#bar-progress').stop().hide();
-      $('#block-tree').removeAttr('hidden');
-    }
-
-  });
+    }, 600);
+    $('#bar-progress').removeAttr('hidden');
+    progress(100, $('#progressBar'));
+    $.ajax({
+      type: 'post',
+      url: baseUri + 'module/blockfactura/process',
+      data: 'action=clientdetail&' + data,
+      dataType: 'json',
+      success: function (json) {
+        get_uid = json.Data.UID;
+        fillViewTree(json);
+        getOrder();
+        $('#bar-progress').stop().hide();
+        $('#block-tree').removeAttr('hidden');
+      }
+    });
+  }
 }
 
 function fillViewTree(data) {
