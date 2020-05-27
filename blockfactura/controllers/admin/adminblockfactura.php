@@ -120,7 +120,8 @@ class AdminBlockfacturaController extends ModuleAdminController
       $uid  = Tools::getValue('uid');
       $type = Tools::getValue('type');
 
-      $url = ($type == 'pdf') ? $this->module->urlapi33.$uid.'/pdf' : $this->module->urlapi33.$uid.'/xml';
+      $url_aux = ($this->module->checkbox_dev == 0) ? $this->module->urlapi33 : $this->module->urlapi33_dev;
+      $url = ($type == 'pdf') ? $url_aux.$uid.'/pdf' : $url_aux.$uid.'/xml' ;
       $keyapi = $this->module->keyapi;
       $keysecret = $this->module->keysecret;
 
