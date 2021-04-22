@@ -121,7 +121,11 @@ class BlockFactura extends Module
     {
         $parent_tab = new Tab();
         // Need a foreach for the language
-        $parent_tab->name[$this->context->language->id] = $this->l('Facturacom');
+
+        $parent_tab->name = array();
+        foreach (Language::getLanguages(true) as $lang)
+          $parent_tab->name[$lang['id_lang']] = 'Facturacom';
+          
         $parent_tab->class_name = 'AdminBlockfactura';
         $parent_tab->id_parent = Tab::getIdFromClassName('AdminAdmin'); // Home tab
         $parent_tab->module = $this->name;
