@@ -1,6 +1,9 @@
 # PrestaShoppCFDI33_1.7
 Plugin Prestashop 1.7 para nuevo cfdi 3.3
 
+### Fix v3.3.1
+ * Fix en bug de tab name en los idiomas al momento de instalar.
+
 ### Fix v3.3
  * Campos requeridos para facturar (email y rfc)
  
