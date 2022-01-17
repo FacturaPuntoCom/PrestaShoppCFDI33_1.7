@@ -71,7 +71,7 @@ $(function () {
     if (selected_method == 04 || selected_method == 28 || selected_method == 03) {
       if (num_cta_method == "" || num_cta_method.length < 4) {
         $("#error").text('Ingresa los últimos 4 dí­gitos de tu cuenta o tarjeta.');
-        swal("¡Algo ocurrió!", "Ingresa los últimos 4 dí­gitos de tu cuenta o tarjeta", "warning");
+        Swal.fire("¡Algo ocurrió!", "Ingresa los últimos 4 dí­gitos de tu cuenta o tarjeta", "warning");
         return false;
       }
     }
@@ -80,7 +80,7 @@ $(function () {
       $("html, body").animate({
         scrollTop: 0
       }, 600);
-      swal("¡Atención!", "Selecciona un método de pago", "warning");
+      Swal.fire("¡Atención!", "Selecciona un método de pago", "warning");
       return false;
     } else {
       invoice(get_rfc, get_uid, num_order, selected_method, num_cta_method, selected_usocfdi);
@@ -163,7 +163,7 @@ function sendDataFormOne(data_form) {
         } else {
           $('#bar-progress').stop().hide();
           $('#block-one').fadeIn('100');
-          swal("¡Lo sentimos!", "Tu licencia no se encuentra activa o ha caducado ", "warning");
+          Swal.fire("¡Lo sentimos!", "Tu licencia no se encuentra activa o ha caducado ", "warning");
         }
       }
 
@@ -205,10 +205,10 @@ function cleanFormTwo() {
 
 function orderDetail(data) {
   if ($('#contact-email').val() == '' || $('#data-rfc').val() == '') {
-    swal({
+    Swal.fire({
       title: "Campos obligatorios",
       text: "El email y el RFC no deben estar vacíos",
-      type: 'info',
+      icon: 'info',
       showConfirmButton: true
     });
   } else {
@@ -299,10 +299,10 @@ function getOrder() {
 
 
 function invoice(rfc, uid, order, method, num_cta, usocfdi) {
-  swal({
+  Swal.fire({
     title: "Preparando tu factura",
     text: "Timbrando...",
-    type: 'info',
+    icon: 'info',
     showConfirmButton: false
   });
   $.ajax({
@@ -318,9 +318,9 @@ function invoice(rfc, uid, order, method, num_cta, usocfdi) {
         $('#alerts').stop().hide();
         $('#block-four').removeAttr('hidden');
         setTimeout(function () {
-          swal({
+          Swal.fire({
             title: "¡Facturado!",
-            type: 'success',
+            icon: 'success',
             timer: 1000,
             showConfirmButton: false
           });
@@ -332,10 +332,10 @@ function invoice(rfc, uid, order, method, num_cta, usocfdi) {
       } else {
         // alert(json.message);
         setTimeout(function () {
-          swal({
+          Swal.fire({
             title: "¡Algo ocurrio!",
             text: json.message.message,
-            type: 'warning',
+            icon: 'warning',
             showConfirmButton: true
           });
         }, 2000);
@@ -417,7 +417,7 @@ function downloadFile(uid, type) {
 function unlockOrder(order) {
   $('#alerts').hide();
   $('#activar').hide();
-  swal({
+  Swal.fire({
     title: "Atendiendo tu petición",
     text: "LIBERANDO EL PEDIDO...",
     timer: 2000,
@@ -429,7 +429,7 @@ function unlockOrder(order) {
     data: 'action=unlockorder&' + '&order=' + order + '&id_order_state=2',
     dataType: 'json',
     success: function (response) {
-      swal("¡En hora buena!", "El pedido se encuentra liberado, intenta facturar de nuevo", "success");
+      Swal.fire("¡En hora buena!", "El pedido se encuentra liberado, intenta facturar de nuevo", "success");
     }
   });
 }

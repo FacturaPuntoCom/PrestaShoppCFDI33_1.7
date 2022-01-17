@@ -73,51 +73,117 @@
 
   function invoiceCancel(uid){
     var url_admin = $('#url-admin').val();
-    swal({
-      title: "Cancelación de factura",
-      text: "cancelando...",
-      type: "info",
-      showConfirmButton: false
-    });
-    $.ajax({
-      type: 'post',
-      url: url_admin,
-      dataType: 'json',
-      data: {
-        controller : 'AdminBlockfactura',
-  			action : 'invoiceCancel',
-        uid: uid,
-  			ajax : true,
-      },
-      success: function(response){
-          if (response.status != 'error') {
-            $('#cancel-'+uid).text('Factura Cancelada');
-            $('#cancel-'+uid).attr('class', 'btn btn-default');
-            $('#cancel-'+uid).attr('disabled', true);
-            $('#pdf-'+uid).attr('disabled', true);
-            $('#xml-'+uid).attr('disabled', true);
-            $('#mail-'+uid).stop().hide();
-            setTimeout(function(){
-              swal({
-                title: "¡Factura Cancelada!",
-                type: 'success',
-                timer: 2000,
-                showConfirmButton: false
-              });
-            }, 2000);
-          }else{
-            swal("Algo salió mal :( ", "error");
+
+    Swal.fire({
+      title: 'Cancelar factura',
+      html: `
+      <div class="cancelacion">
+        <div>
+          <h2>¿Estás seguro que quieres cancelar esta factura?, esta acción es irreversible</h2>
+          <p>Sí es así, por favor selecciona un motivo de cancelación</p>
+          <select id="motivo" class="swal2-input" name="motivo" placeholder="Selecciona una opción">
+            <option value="01">01 - Comprobante emitido con errores con relación</option>
+            <option value="02">02 - Comprobante emitido con errores sin relación</option>
+            <option value="03">03 - No se llevó a cabo la operación</option>
+            <option value="04">04 - Operación nominiativa relacionada en una factura global</option>
+          </select>
+        </div>
+        <div id="grupoUID">
+          <p>Escribe el UID o el UUID/folio físcal del CFDI sustituto</p>
+          <input type="text" class="swal2-input" id="uid" name="uid" placeholder="Escribe el folio fiscal o uid">
+        </div>
+      </div>`,
+      showCloseButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Sí, quiero cancelarla',
+      confirmButtonColor: '#72C279',
+      cancelButtonColor: '#d33',
+      cancelButtonText: 'No',
+
+      focusConfirm: false,
+      onOpen: () => {
+        $('#motivo').on('change', function(){
+          if(this.value == "01"){
+            $('#grupoUID').show();
+          } else {
+            $('#grupoUID').hide();
+            if($('#swal2-validation-message').length){
+              $('#swal2-validation-message').hide();
+            }
           }
+        });
+      },
+      preConfirm: () => {
+        const motivo = $('#motivo').val();
+        const folioSustituto = $('#uid').val();
+        if (motivo == '01' && folioSustituto == '') {
+          Swal.showValidationMessage(`Por favor, ingrese el folio o uid del CFDI que sustituirá esta factura a cancelar.`)
+        }
+        return { motivo, folioSustituto }
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          type: 'post',
+          url: url_admin,
+          dataType: 'json',
+          data: {
+            controller : 'AdminBlockfactura',
+            action : 'invoiceCancel',
+            uid: uid,
+            motivo: result.value.motivo,
+            folioSustituto: result.value.folioSustituto,
+            ajax : true,
+          },
+          beforeSend: function(){
+            Swal.fire({
+              html: '<h5>Cancelando factura, por favor espere ...</h5>',
+              showConfirmButton: false,
+              onOpen: () => Swal.showLoading()
+            });
+          },
+          success: function(response){
+            console.log(response);
+              if (response.response != 'error') {
+                Swal.fire({
+                  icon: 'success',
+                  text: 'La factura ha sido cancelada'
+                });
+
+                $('#cancel-'+uid).text('Factura Cancelada');
+                $('#cancel-'+uid).attr('class', 'btn btn-default');
+                $('#cancel-'+uid).attr('disabled', true);
+                $('#pdf-'+uid).attr('disabled', true);
+                $('#xml-'+uid).attr('disabled', true);
+                $('#mail-'+uid).stop().hide();
+              }else{
+                Swal.fire({
+                  icon: 'error',
+                  html: '<h5>' + response.message + '</h5>'
+              });
+              }
+          },
+          error: function(e) {
+            console.log(e);
+              Swal.fire({
+                  icon: 'error',
+                  html: '<h5>Oops, ocurrió un error :( </h5>'
+              });
+              return false;
+          }
+        });
       }
     });
+
+    
   }
 
   function invoiceEmail(uid){
     var url_admin = $('#url-admin').val();
-    swal({
+    Swal.fire({
       title: "Envío de factura",
       text: "enviando email a tu cliente...",
-      type: "info",
+      icon: "info",
       showConfirmButton: false
     });
     $.ajax({
@@ -133,15 +199,15 @@
       success: function(response){
           if (response.status != 'error') {
             setTimeout(function(){
-              swal({
+              Swal.fire({
                 title: "¡Factura Envíada!",
-                type: 'success',
+                icon: 'success',
                 timer: 2000,
                 showConfirmButton: false
               });
             }, 2000);
           }else {
-            swal("Algo salió mal :( ", "error");
+            Swal.fire("Algo salió mal :( ", "error");
           }
       }
     });
@@ -149,7 +215,7 @@
   
   function downloadFile(uid, type) {
     var url_admin = $('#url-admin').val();
-    swal({
+    Swal.fire({
       title: "Factura " + uid,
       text: "Descargando...",
       timer: 6000,
@@ -193,3 +259,13 @@
   }
   </script>
 </div>
+
+<style type="text/css">
+  .swal2-validation-message{
+    font-size: 14px;
+    text-align: left;
+  }
+  .cancelacion{
+    font-size: 12px;
+  }
+</style>
