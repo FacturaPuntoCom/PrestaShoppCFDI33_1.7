@@ -39,8 +39,8 @@ class AdminBlockfacturaController extends ModuleAdminController
 
         $this->addJS(_MODULE_DIR_.$this->module->name.'/views/js/table.js');
         $this->addJS(_MODULE_DIR_.$this->module->name.'/views/js/dataTables.js');
-        $this->addJS(_MODULE_DIR_.$this->module->name.'/views/js/sweetalert.min.js');
-        $this->addCSS(_MODULE_DIR_.$this->module->name.'/views/css/sweetalert.css');
+        $this->addJS(_MODULE_DIR_.$this->module->name.'/views/js/sweetalert2.all.min.js');
+        $this->addCSS(_MODULE_DIR_.$this->module->name.'/views/css/sweetalert2.min.css');
         $this->addCSS(_MODULE_DIR_.$this->module->name.'/views/css/dataTables.css');
     }
 
@@ -94,13 +94,14 @@ class AdminBlockfacturaController extends ModuleAdminController
     public function ajaxProcessInvoiceCancel()
     {
         $uid = Tools::getValue('uid');
+        $data = ['motivo' => Tools::getValue('motivo'), 'folioSustituto' => Tools::getValue('folioSustituto')];
 
         $url_aux = ($this->module->checkbox_dev == 0) ? $this->module->urlapi33 : $this->module->urlapi33_dev;
         $url = $url_aux.$uid.'/cancel';
         $keyapi = $this->module->keyapi;
         $keysecret = $this->module->keysecret;
 
-        die(Curls::adminCurl($url, $keyapi, $keysecret));
+        die(Curls::frontCurl($url, 'post', $keyapi, $keysecret, $data));
     }
 
     public function ajaxProcessInvoiceEmail()

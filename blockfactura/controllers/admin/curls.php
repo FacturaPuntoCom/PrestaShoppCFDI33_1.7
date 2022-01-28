@@ -42,4 +42,45 @@ class Curls
 
         return $data;
     }
+    public static function frontCurl($url, $request, $keyapi, $keysecret, $params = null)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        //curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $request);
+
+        if (!isset($params)) {
+            $params = 'no data';
+        }
+
+        if ($request == 'post') {
+            $dataString = Tools::jsonEncode($params);
+            //die($dataString);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+                'F-PLUGIN: f6a36f158b2b09cae5054e2170d62f750f7e9ff7',
+                'F-API-KEY: '.$keyapi,
+                'F-SECRET-KEY: '.$keysecret,
+            ));
+        } else {
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+                'F-PLUGIN: f6a36f158b2b09cae5054e2170d62f750f7e9ff7',
+                'F-API-KEY: '.$keyapi,
+                'F-SECRET-KEY: '.$keysecret,
+            ));
+        }
+
+        try {
+            $data = curl_exec($ch);
+            curl_close($ch);
+        } catch (Exception $e) {
+            echo 'Exception occured: '.$e->getMessage();
+        }
+
+        return $data;
+    }
 }
