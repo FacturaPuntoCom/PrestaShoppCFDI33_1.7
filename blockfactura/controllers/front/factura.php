@@ -64,8 +64,8 @@ class BlockfacturaFacturaModuleFrontController extends ModuleFrontController
         $this->addJqueryUI('ui.progressbar');
         $this->addJS(_MODULE_DIR_.$this->module->name.'/views/js/progress.js');
         $this->addJS(_MODULE_DIR_.$this->module->name.'/views/js/control.js');
-        $this->addJS(_MODULE_DIR_.$this->module->name.'/views/js/sweetalert.min.js');
-        $this->addCSS(_MODULE_DIR_.$this->module->name.'/views/css/sweetalert.css');
+        $this->addJS(_MODULE_DIR_.$this->module->name.'/views/js/sweetalert2.all.min.js');
+        $this->addCSS(_MODULE_DIR_.$this->module->name.'/views/css/sweetalert2.min.css');
         $this->addCSS(_MODULE_DIR_.$this->module->name.'/views/css/factura.css');
       //   $this->registerStylesheet(
       //     'factura_style',

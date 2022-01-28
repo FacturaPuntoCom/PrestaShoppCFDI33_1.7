@@ -9,6 +9,9 @@ Plugin Prestashop 1.7 para nuevo cfdi 3.3
  * Enviado
  * Entregado
  * Preparación
+ 
+### Fix v3.3.2
+ * Fix en la captura de la razón social del formulario.
 
 ### Fix v3.3.1
  * Fix en bug de tab name en los idiomas al momento de instalar.

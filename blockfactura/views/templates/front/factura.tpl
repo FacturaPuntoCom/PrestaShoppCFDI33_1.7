@@ -104,7 +104,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
-							<input id="data-razonsocial" type="text" class="client-input animacion-input" name="data-razoncial" disabled="true" style="border-color: {$colors|escape:'htmlall':'UTF-8'};">
+							<input id="data-razonsocial" type="text" class="client-input animacion-input" name="data-razonsocial" disabled="true" style="border-color: {$colors|escape:'htmlall':'UTF-8'};">
 							<label for="rfc">{l s='Business name' mod='blockfactura'}</label>
 						</div>
 					</div>
