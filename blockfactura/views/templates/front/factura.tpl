@@ -90,7 +90,7 @@
 					<div class="col-md-12">
 						<div class="form-group">
 							<select id="data-regimen" name="data-regimen" class="client-input animacion-input">
-								<option value="0">{l s='Select an option' mod='blockfactura'}</option>
+								<option value="">{l s='Select an option' mod='blockfactura'}</option>
 								<option value="601">{l s='General de Ley Personas Morales' mod='blockfactura'}</option>
 								<option value="603">{l s='Personas Morales con Fines no Lucrativos' mod='blockfactura'}</option>
 								<option value="605">{l s='Sueldos y Salarios e Ingresos Asimilados a Salarios' mod='blockfactura'}</option>

@@ -366,7 +366,7 @@
          setTimeout(function () {
            Swal.fire({
              title: "¡Algo ocurrio!",
-             text: json.message.message,
+             text: typeof json.message == 'object' ? json.message.message : json.message,
              icon: 'warning',
              showConfirmButton: true
            });
