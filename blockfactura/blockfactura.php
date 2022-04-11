@@ -109,9 +109,9 @@ class BlockFactura extends Module
         $this->urlpub = 'https://factura.com/api/publica/cfdi40/';
 
         //urls_sandbox
-        $this->urlapi_dev = 'http://devfactura.in/api/v1/';
-        $this->urlapi40_dev = 'http://devfactura.in/api/v4/cfdi40/';
-        $this->urlpub_dev = 'http://devfactura.in/api/publica/cfdi40/';
+        $this->urlapi_dev = 'https://sandbox.factura.com/api/v1/';
+        $this->urlapi40_dev = 'https://sandbox.factura.com/api/v3/cfdi40/';
+        $this->urlpub_dev = 'https://sandbox.factura.com/api/publica/cfdi40/';
 
         //defined version
         $version = _PS_VERSION_;
