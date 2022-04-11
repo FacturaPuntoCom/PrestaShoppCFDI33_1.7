@@ -361,8 +361,8 @@ class BlockFactura extends Module
             'name' => $this->l('Pagos por servicios educativos (colegiaturas)'),
           ),
           array(
-            'id_option' => 'P01',
-            'name' => $this->l('Por definir'),
+            'id_option' => 'S01',
+            'name' => $this->l('Sin efectos fiscales'),
           ),
         );
 

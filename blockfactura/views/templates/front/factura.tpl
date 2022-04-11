@@ -301,7 +301,6 @@
 							<option value="D09">{l s='Depósitos en cuentas para el ahorro, primas que tengan como base planes de pensiones' mod='blockfactura'}</option>
 							<option value="D10">{l s='Pagos por servicios educativos (colegiaturas)' mod='blockfactura'}</option>
 							<option value="S01">{l s='Sin efectos fiscales' mod='blockfactura'}</option>
-							<option value="P01">{l s='Por definir' mod='blockfactura'}</option>
 						</select>
 				</div>
 			</div>
