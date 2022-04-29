@@ -160,6 +160,7 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
         $params = array(
           'nombre' => Tools::getValue('contact-nombre'),
           'apellidos' => Tools::getValue('contact-apellidos'),
+          'regimen' => Tools::getValue('data-regimen'),
           'email' => Tools::getValue('contact-email'),
           'telefono' => Tools::getValue('contact-telefono'),
           'razons' => Tools::getValue('data-razonsocial'),
@@ -509,7 +510,7 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
                  'EnviarCorreo' => $send,
                );
         $dataString = Tools::jsonEncode($params);
-        $url_invoice = ($this->module->checkbox_dev == 0) ? $this->module->urlapi33 : $this->module->urlapi33_dev;
+        $url_invoice = ($this->module->checkbox_dev == 0) ? $this->module->urlapi40 : $this->module->urlapi40_dev;
         $url = $url_invoice.'create';
         $keyapi = $this->module->keyapi;
         $keysecret = $this->module->keysecret;
@@ -552,7 +553,7 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
       $uid  = Tools::getValue('uid');
       $type = Tools::getValue('type');
 
-      $url_aux = ($this->module->checkbox_dev == 0) ? $this->module->urlapi33 : $this->module->urlapi33_dev;
+      $url_aux = ($this->module->checkbox_dev == 0) ? $this->module->urlapi40 : $this->module->urlapi40_dev;
       $url = ($type == 'pdf') ? $url_aux.$uid.'/pdf' : $url_aux.$uid.'/xml' ;
       $keyapi = $this->module->keyapi;
       $keysecret = $this->module->keysecret;

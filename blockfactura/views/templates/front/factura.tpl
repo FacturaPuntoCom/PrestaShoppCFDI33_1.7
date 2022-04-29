@@ -87,6 +87,36 @@
 				</div>
 
 				<div class="row">
+					<div class="col-md-12">
+						<div class="form-group">
+							<select id="data-regimen" name="data-regimen" class="client-input animacion-input">
+								<option value="">{l s='Select an option' mod='blockfactura'}</option>
+								<option value="601">{l s='General de Ley Personas Morales' mod='blockfactura'}</option>
+								<option value="603">{l s='Personas Morales con Fines no Lucrativos' mod='blockfactura'}</option>
+								<option value="605">{l s='Sueldos y Salarios e Ingresos Asimilados a Salarios' mod='blockfactura'}</option>
+								<option value="606">{l s='Arrendamiento' mod='blockfactura'}</option>
+								<option value="607">{l s='Régimen de Enajenación o Adquisición de Bienes' mod='blockfactura'}</option>
+								<option value="608">{l s='Demás ingresos' mod='blockfactura'}</option>
+								<option value="610">{l s='Residentes en el Extranjero sin Establecimiento Permanente en México' mod='blockfactura'}</option>
+								<option value="611">{l s='Ingresos por Dividendos (socios y accionistas)' mod='blockfactura'}</option>
+								<option value="612">{l s='Personas Físicas con Actividades Empresariales y Profesionales' mod='blockfactura'}</option>
+								<option value="614">{l s='Ingresos por intereses' mod='blockfactura'}</option>
+								<option value="615">{l s='Régimen de los ingresos por obtención de premios' mod='blockfactura'}</option>
+								<option value="616">{l s='Sin obligaciones fiscales' mod='blockfactura'}</option>
+								<option value="620">{l s='Sociedades Cooperativas de Producción que optan por diferir sus ingresos' mod='blockfactura'}</option>
+								<option value="621">{l s='Incorporación Fiscal' mod='blockfactura'}</option>
+								<option value="622">{l s='Actividades Agrícolas, Ganaderas, Silvícolas y Pesqueras' mod='blockfactura'}</option>
+								<option value="623">{l s='Opcional para Grupos de Sociedades' mod='blockfactura'}</option>
+								<option value="624">{l s='Coordinados' mod='blockfactura'}</option>
+								<option value="625">{l s='Régimen de las Actividades Empresariales con ingresos a través de Plataformas Tecnológicas' mod='blockfactura'}</option>
+								<option value="626">{l s='Régimen Simplificado de Confianza' mod='blockfactura'}</option>
+							</select>							
+							<label for="data-regimen">{l s='Regimen' mod='blockfactura'}</label>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group">
 							<input id="contact-email" type="text" class="client-input animacion-input" name="contact-email" disabled="true" style="border-color: {$colors|escape:'htmlall':'UTF-8'};">
@@ -105,7 +135,7 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<input id="data-razonsocial" type="text" class="client-input animacion-input" name="data-razonsocial" disabled="true" style="border-color: {$colors|escape:'htmlall':'UTF-8'};">
-							<label for="rfc">{l s='Business name' mod='blockfactura'}</label>
+							<label for="data-razonsocial">{l s='Business name' mod='blockfactura'}</label>
 						</div>
 					</div>
 					<div class="col-md-6">
@@ -270,7 +300,7 @@
 							<option value="D08">{l s='Gastos de transportación escolar obligatoria' mod='blockfactura'}</option>
 							<option value="D09">{l s='Depósitos en cuentas para el ahorro, primas que tengan como base planes de pensiones' mod='blockfactura'}</option>
 							<option value="D10">{l s='Pagos por servicios educativos (colegiaturas)' mod='blockfactura'}</option>
-							<option value="P01">{l s='Por definir' mod='blockfactura'}</option>
+							<option value="S01">{l s='Sin efectos fiscales' mod='blockfactura'}</option>
 						</select>
 				</div>
 			</div>
