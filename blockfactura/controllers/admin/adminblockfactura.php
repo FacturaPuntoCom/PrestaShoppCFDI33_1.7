@@ -50,7 +50,7 @@ class AdminBlockfacturaController extends ModuleAdminController
 
         $invoices = array();
         // $url = $this->module->urlapi.'invoices';
-        $url_aux = ($this->module->checkbox_dev == 0) ? $this->module->urlapi33 : $this->module->urlapi33_dev;
+        $url_aux = ($this->module->checkbox_dev == 0) ? $this->module->urlapi40 : $this->module->urlapi40_dev;
         $url_pub = ($this->module->checkbox_dev == 0) ? $this->module->urlpub : $this->module->urlpub_dev;
         
         $url = $url_aux.'list?=&type_document=factura&per_page=1000';
@@ -96,7 +96,7 @@ class AdminBlockfacturaController extends ModuleAdminController
         $uid = Tools::getValue('uid');
         $data = ['motivo' => Tools::getValue('motivo'), 'folioSustituto' => Tools::getValue('folioSustituto')];
 
-        $url_aux = ($this->module->checkbox_dev == 0) ? $this->module->urlapi33 : $this->module->urlapi33_dev;
+        $url_aux = ($this->module->checkbox_dev == 0) ? $this->module->urlapi40 : $this->module->urlapi40_dev;
         $url = $url_aux.$uid.'/cancel';
         $keyapi = $this->module->keyapi;
         $keysecret = $this->module->keysecret;
@@ -108,7 +108,7 @@ class AdminBlockfacturaController extends ModuleAdminController
     {
         $uid = Tools::getValue('uid');
 
-        $url_aux = ($this->module->checkbox_dev == 0) ? $this->module->urlapi33 : $this->module->urlapi33_dev;
+        $url_aux = ($this->module->checkbox_dev == 0) ? $this->module->urlapi40 : $this->module->urlapi40_dev;
         $url = $url_aux.$uid.'/email';
         $keyapi = $this->module->keyapi;
         $keysecret = $this->module->keysecret;
@@ -121,7 +121,7 @@ class AdminBlockfacturaController extends ModuleAdminController
       $uid  = Tools::getValue('uid');
       $type = Tools::getValue('type');
 
-      $url_aux = ($this->module->checkbox_dev == 0) ? $this->module->urlapi33 : $this->module->urlapi33_dev;
+      $url_aux = ($this->module->checkbox_dev == 0) ? $this->module->urlapi40 : $this->module->urlapi40_dev;
       $url = ($type == 'pdf') ? $url_aux.$uid.'/pdf' : $url_aux.$uid.'/xml' ;
       $keyapi = $this->module->keyapi;
       $keysecret = $this->module->keysecret;
