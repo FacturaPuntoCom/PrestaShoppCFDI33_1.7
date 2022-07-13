@@ -28,10 +28,8 @@ class BlockFactura extends Module
     public $serie;
     public $days;
     public $urlapi;
-    public $urlapi33;
     public $urlapi40;
     public $urlapi_dev;
-    public $urlapi33_dev;
     public $urlapi40_dev;
     public $urlpub;
     public $urlpub_dev;
