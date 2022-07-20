@@ -32,7 +32,7 @@ class AdminBlockfacturaController extends ModuleAdminController
         $this->template = 'test.tpl';
     }
 
-    public function setMedia()
+    public function setMedia($isNewTheme = false)
     {
         parent::setMedia();
         $this->addjQuery();
