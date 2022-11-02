@@ -366,6 +366,10 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
                     $set_discount = ($unit_price * $product['product_quantity'])-0.01; //se evita tener campo base traslado igual a 0
                     $discount -= ($unit_price * $product['product_quantity'])-0.01;
                     $emptyDiscount = true;
+                } else if($discount == $unit_price * $product['product_quantity']){
+                    $set_discount = ($unit_price * $product['product_quantity'])-0.01; //se evita tener campo base traslado igual a 0
+                    $discount = 0;
+                    $emptyDiscount = true;
                 } else {
                     $set_discount = $discount;
                     $discount = 0;
