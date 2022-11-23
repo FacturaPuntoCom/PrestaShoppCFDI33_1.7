@@ -400,7 +400,24 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
                 );
                 $traslados = array('Traslados' => $taxes_product);
               break;
+              case 0:
+                $base_calc = (Tools::ps_round($unit_price, 2) * $product['product_quantity']) - $set_discount;
+                $decimas = explode(".", $base_calc);
 
+                //verificamos que no exceda el máximo de decimales
+                if(strlen($decimas[1]) > 6) {
+                    $base_calc = number_format(round($base_calc, 6), 6);
+                }
+
+                $taxes_product[] = array(
+                  'Base' => $base_calc,
+                  'Impuesto' => '002',
+                  'TipoFactor' => 'Tasa',
+                  'TasaOCuota' => '0',
+                  'Importe' => number_format(Tools::ps_round($base_calc * 0, 6), 6)
+                );
+                $traslados = array('Traslados' => $taxes_product);
+              break;
               default:
                 $traslados = [];
                 break;
@@ -418,11 +435,6 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
               'Descuento' => $set_discount,
               'Impuestos' => $traslados,
             );
-
-            if ($product['tax_rate'] == 0) {
-              unset($products_invoice[$in]['Impuestos']);
-            }
-            $in++;
         }
 
         //método para obtener los gastos de envío
