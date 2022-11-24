@@ -121,7 +121,6 @@ class BlockFactura extends Module
     {
         $parent_tab = new Tab();
         // Need a foreach for the language
-
         $parent_tab->name = array();
         foreach (Language::getLanguages(true) as $lang)
           $parent_tab->name[$lang['id_lang']] = 'Facturacom';
@@ -130,6 +129,22 @@ class BlockFactura extends Module
         $parent_tab->id_parent = Tab::getIdFromClassName('AdminAdmin'); // Home tab
         $parent_tab->module = $this->name;
         $parent_tab->add();
+
+        // History option on menu
+        $child_tab = new Tab();
+        $child_tab->name[$this->context->language->id] = $this->l('Historial');
+        $child_tab->class_name = 'AdminBlockfactura';
+        $child_tab->id_parent = $parent_tab->id; // Home tab
+        $child_tab->module = $this->name;
+        $child_tab->add();
+
+        // Invoices by block option menu
+        $child_tab2 = new Tab();
+        $child_tab2->name[$this->context->language->id] = $this->l('Facturacion por bloques');
+        $child_tab2->class_name = 'AdminInvoicesbyblock';
+        $child_tab2->id_parent = $parent_tab->id;
+        $child_tab2->module = $this->name;
+        $child_tab2->add();
 
         if (Shop::isFeatureActive()) {
             Shop::setContext(Shop::CONTEXT_ALL);

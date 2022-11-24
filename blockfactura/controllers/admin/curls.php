@@ -42,6 +42,7 @@ class Curls
 
         return $data;
     }
+    
     public static function frontCurl($url, $request, $keyapi, $keysecret, $params = null)
     {
         $ch = curl_init();
