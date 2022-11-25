@@ -292,7 +292,7 @@ class AdminInvoicesbyblockController extends ModuleAdminController
                  'TipoCfdi' => 'factura',
                  'Redondeo' => 2,
                  'Conceptos' => $products_invoice,
-                 'UsoCFDI' => 'G03',
+                 'UsoCFDI' => 'S01',
                  'Cuenta' => $num_cta,
                  'MetodoPago' => 'PUE',
                  'FormaPago' => '31',
