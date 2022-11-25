@@ -334,10 +334,9 @@
 										<option value="27">{l s='To the satisfaction of the creditor' mod='blockfactura'}</option>
 										<option value="28">{l s='Debit card' mod='blockfactura'}</option>
 										<option value="29">{l s='Service card' mod='blockfactura'}</option>
-										<option value="29">{l s='Application of advances' mod='blockfactura'}</option>
-										<option value="29">{l s='Payment intermediary' mod='blockfactura'}</option>
-										<option value="29">{l s='to define' mod='blockfactura'}</option>
-										<option value="99">{l s='No data' mod='blockfactura'}</option>
+										<option value="30">{l s='Application of advances' mod='blockfactura'}</option>
+										<option value="31">{l s='Payment intermediary' mod='blockfactura'}</option>
+										<option value="99">{l s='to define' mod='blockfactura'}</option>
 							</select>
 					</div>
 					<br>
