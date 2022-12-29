@@ -397,6 +397,24 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
                 $traslados = array('Traslados' => $taxes_product);
               break;
 
+              case 8:
+                $base_calc = (Tools::ps_round($unit_price, 2) * $product['product_quantity']) - $set_discount;
+                $decimas = explode(".", $base_calc);
+
+                //verificamos que no exceda el máximo de decimales
+                if(strlen($decimas[1]) > 6) {
+                    $base_calc = round($base_calc, 6);
+                }
+                $taxes_product[] = array(
+                  'Base' => $base_calc,
+                  'Impuesto' => '002',
+                  'TipoFactor' => 'Tasa',
+                  'TasaOCuota' => '0.08',
+                  'Importe' => Tools::ps_round($base_calc * .08, 6)
+                );
+                $traslados = array('Traslados' => $taxes_product);
+              break;
+
               default:
                 $traslados = [];
                 break;
