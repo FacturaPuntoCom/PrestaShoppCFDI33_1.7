@@ -471,7 +471,7 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
                   $traslados_carrier = array('Traslados' => $taxes_carrier);
                 }
 
-                if ($carrier['shipping_cost_tax_excl'] != '0') {
+                if ($carrier['shipping_cost_tax_excl'] != '0' && !is_null($carrier['shipping_cost_tax_excl'])) {
                     $products_invoice[] = array(
                       'ClaveProdServ' => '78102203',
                       'ClaveUnidad' => 'SX',
