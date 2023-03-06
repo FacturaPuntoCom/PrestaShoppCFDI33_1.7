@@ -371,7 +371,7 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
             //armar los impuestos por producto
             switch ($product['tax_rate']) {
               case 16:
-                $base_calc = (Tools::ps_round($unit_price, 2) * $product['product_quantity']) - $set_discount;
+                $base_calc = (Tools::ps_round(($unit_price * $product['product_quantity']), 2) - $set_discount);
                 $decimas = explode(".", $base_calc);
 
                 //verificamos que no exceda el máximo de decimales
