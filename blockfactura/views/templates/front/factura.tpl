@@ -71,24 +71,6 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="form-group">
-							<input id="contact-nombre" type="text" class="client-input animacion-input" value="" name="contact-nombre" disabled="true" style="border-color: {$colors|escape:'htmlall':'UTF-8'};">
-							<label for="rfc">{l s='Names' mod='blockfactura'}</label>
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-12">
-						<div class="form-group">
-							<input id="contact-apellidos" type="text" class="client-input animacion-input" name="contact-apellidos" disabled="true" style="border-color: {$colors|escape:'htmlall':'UTF-8'};">
-							<label for="rfc">{l s='Surnames' mod='blockfactura'}</label>
-						</div>
-					</div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-12">
-						<div class="form-group">
 							<select id="data-regimen" name="data-regimen" class="client-input animacion-input">
 								<option value="">{l s='Select an option' mod='blockfactura'}</option>
 								<option value="601">{l s='General de Ley Personas Morales' mod='blockfactura'}</option>

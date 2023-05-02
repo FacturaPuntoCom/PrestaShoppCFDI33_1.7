@@ -85,15 +85,28 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
         $query->orderBy('id_order_history DESC');
         $result = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($query);
 
+        //Obtenemos los estatus que tengan habilitado “Establecer el pedido como pagado.” 
+        $query = new DbQuery();
+        $query->select('o.id_order_state');
+        $query->from('order_state', 'o');
+        $query->where('o.paid = 1');
+        $query->where('o.deleted = 0');
+        $estatus = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS($query);    
+
+        $arrEstadosPermitidos = array();        
+        foreach($estatus as $item) {
+            array_push($arrEstadosPermitidos, $item['id_order_state']);
+        }
+
         // --- method order state --
         $count_ord = 0;
         foreach ($result as &$row) {
             if ($count_ord == 0) {
-              if ($row['id_order_state'] != '2') {
-                  $errors[] = array('invoice' => 'LA ORDEN NO SE PUEDE FACTURAR, ya que no se encuentra liberada.');
-              }
+                if (!in_array($row['id_order_state'], $arrEstadosPermitidos)) {
+                    $errors[] = array('invoice' => 'LA ORDEN NO SE PUEDE FACTURAR, ya que no se encuentra liberada.');
+                }
             }
-          $count_ord ++;
+            $count_ord ++;
         }
 
         // --- end method order state ---
