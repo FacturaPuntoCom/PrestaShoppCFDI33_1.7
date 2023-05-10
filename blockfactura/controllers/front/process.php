@@ -89,7 +89,7 @@ class BlockfacturaProcessModuleFrontController extends ModuleFrontController
         $count_ord = 0;
         foreach ($result as &$row) {
             if ($count_ord == 0) {
-              if ($row['id_order_state'] != '2') {
+              if (!in_array($row['id_order_state'], array('2', '3', '4', '5', '9', '11'))) {
                   $errors[] = array('invoice' => 'LA ORDEN NO SE PUEDE FACTURAR, ya que no se encuentra liberada.');
               }
             }
