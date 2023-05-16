@@ -267,12 +267,13 @@
  }
  
  function fillViewTree(data) {
-   console.log('cuando me ejecuto=?');
-   $('#emisor-nombre').text(data.Data.Contacto.Nombre + ' ' + data.Data.Contacto.Apellidos);
+   $('#emisor-nombre').text($('#data-razonsocial').val());
    $('#emisor-rfc').text(data.Data.RFC);
    $('#emisor-calle').text(data.Data.Calle);
    $('#emisor-colonia').text(data.Data.Colonia);
    $('#emisor-ciudad').text(data.Data.Ciudad);
+   $('#emisor-codpos').text($('#data-cp').val());
+   $('#emisor-delegacion').text($('#data-delegacion').val());
    $('#emisor-email').text(data.Data.Contacto.Email);
    $('#emisor-telefono').text(data.Data.Contacto.Telefono);
  }

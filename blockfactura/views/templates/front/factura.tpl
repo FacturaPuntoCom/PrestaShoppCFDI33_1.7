@@ -222,6 +222,8 @@
 				<h5 id="emisor-calle"></h5>
 				<h5 id="emisor-colonia"></h5>
 				<h5 id="emisor-ciudad"></h5>
+				<h5 id="emisor-codpos"></h5>
+				<h5 id="emisor-delegacion"></h5>
 				<h5 id="emisor-email"></h5>
 				<h5 id="emisor-telefono"></h5>
 			</div>
