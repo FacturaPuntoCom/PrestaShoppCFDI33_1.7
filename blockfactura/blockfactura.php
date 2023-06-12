@@ -102,9 +102,9 @@ class BlockFactura extends Module
         }
 
         //urls_producción
-        $this->urlapi = 'https://factura.com/api/v1/';
-        $this->urlapi40 = 'https://factura.com/api/v3/cfdi40/';
-        $this->urlpub = 'https://factura.com/api/publica/cfdi40/';
+        $this->urlapi = 'https://api.factura.com/v1/';
+        $this->urlapi40 = 'https://api.factura.com/v3/cfdi40/';
+        $this->urlpub = 'https://api.factura.com/publica/cfdi40/';
 
         //urls_sandbox
         $this->urlapi_dev = 'https://sandbox.factura.com/api/v1/';
