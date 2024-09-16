@@ -4,6 +4,15 @@ Plugin Prestashop 1.7 para nuevo cfdi 4.0
 ### Feature CFDI 4.0
  * Se cambió la versión del cfdi 3.3 por únicamente la 4.0
 
+### Feature Multiples estados de pedido
+- Ahora puedes elegir entre los siguientes estados de pedido para activar la facturacion.
+ * Pago Aceptado
+ * Pago remoto aceptado
+ * Pedido pendiente por falta de stock (pagado)
+ * Enviado
+ * Entregado
+ * Preparación
+ 
 ### Fix v3.3.2
  * Fix en la captura de la razón social del formulario.
 
