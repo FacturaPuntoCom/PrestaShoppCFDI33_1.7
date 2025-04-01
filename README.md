@@ -1,6 +1,9 @@
 # PrestaShoppCFDI33_1.7
 Plugin Prestashop 1.7 para nuevo cfdi 4.0
 
+### Fix v3.4
+ * Corrección para alert cuando se ingresan datos de una factura cancelada.
+
 ### Feature CFDI 4.0
  * Se cambió la versión del cfdi 3.3 por únicamente la 4.0
 

@@ -399,7 +399,10 @@
            $("html, body").animate({
              scrollTop: 0
            }, 600);
-           $("#alerts").show();
+           $("#alerts")
+            .removeAttr('hidden')
+            .removeAttr('style')
+            .show();
          } else {
            $('#aviso-factura').text('La orden ya se encuentra facturada');
            document.getElementById("btn-pdf").onclick=function(){downloadFile(response[0].UID, 'pdf')};
